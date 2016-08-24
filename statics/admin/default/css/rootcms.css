@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2016-8-7, 20:24:02
+    Author     : wb
+*/
+@charset "utf-8";
+.smart-form .icon-vertify {
+    right: 5px;
+    padding-left: 3px;
+    border-left-width: 1px;
+    border-left-style: solid;
+    border-color: #BDBDBD;
+}
+
+.smart-form .icon-vertify{
+    position: absolute;
+    top: 5px;
+    height: 22px;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.smart-form .icon-vertify img{
+    width:130px;
+    height: 22px;
+}
+
+#extr-page #main{
+    padding-bottom: 0 !important;
+}
+
+.widget-body .tab-content{
+    background-color: #fff;
+}
+
+.widget-body .tab-pane .form-actions{
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: -10px;
+}
