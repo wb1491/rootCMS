@@ -33,7 +33,7 @@ return [
     "admin/cache"  => ['admin/Index/cache','','ext'=>"html"],
     "admin/upcache/[:type]"  => ['admin/Index/upcache',[],["type"=>"\w+"]],
     "admin/config/[:menuid]" => ['admin/Config/index',[],["menuid"=>"\d+"]],
-    "admin/mailcfg$"         => ['admin/Config/mail',[],[]],
+    "admin/mailsave$"         => ['admin/Config/mailsave',[],[]],
     "admin/mailcfg/[:menuid]" => ['admin/Config/mail',[],['menuid'=>"\d+"]],
     "admin/menugl/[:menuid]"  => ['admin/Menu/index',[],['menuid'=>"\d+"]],
     "admin/menuadd/[:menuid]" => ['admin/Menu/add',[],['menuid'=>"\d+"]],
