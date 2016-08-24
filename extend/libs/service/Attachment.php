@@ -8,9 +8,9 @@
 // | Author: 
 // +----------------------------------------------------------------------
 
-namespace Libs\Service;
+namespace libs\service;
 
-class Attachment extends \Libs\System\Service {
+class Attachment extends \libs\system\Service {
 
     /**
      * 操作句柄
