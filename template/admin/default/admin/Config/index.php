@@ -57,7 +57,7 @@
                   <div style='<if condition=" $Site['generate'] eq 0 "> display:none</if>' id="index_ruleid_1">
                       <?php echo \libs\util\Form::select($IndexURL[1], $Site['index_urlruleid'], 'class="form-control" name="index_urlruleid" ' . ($Site['generate'] == 0 ? "disabled" : "") . ' id="index_urlruleid"'); ?>
                   </div>
-                  <div style='<if condition=" $Site['generate'] eq 1 "> display:none</if>" id="index_ruleid_0">
+                  <div style='<if condition=" $Site['generate'] eq 1 "> display:none</if>' id="index_ruleid_0">
                       <?php echo \libs\util\Form::select($IndexURL[0], $Site['index_urlruleid'], 'class="form-control"name="index_urlruleid" ' . ($Site['generate'] == 1 ? "disabled" : "") . ' id="index_urlruleid"'); ?> 
                   </div>
                 </div>
