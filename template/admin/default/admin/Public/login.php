@@ -73,7 +73,7 @@
                         <div class="well no-padding">
                             <form id="login-form" name="loginform" class="smart-form client-form">
                                 <header>
-                                    系统登陆
+                                    系统登录
                                 </header>
 
                                 <fieldset>
@@ -109,7 +109,7 @@
                                 </fieldset>
                                 <footer>
                                     <button type="submit" id="sbbt" class="btn btn-primary">
-                                        登陆
+                                        登录
                                     </button>
                                 </footer>
                             </form>
