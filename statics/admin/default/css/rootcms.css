@@ -80,13 +80,14 @@ and open the template in the editor.
     text-align: center;
     list-style: none;
 }
-.locate li a {
+.locate li span {
     color: #333;
     display: block;
-    line-height: 38px;
+    line-height: 39px;
     text-decoration: none;
+    cursor: pointer;
 }
-.locate li.current a {
+.locate li.current span {
     background: #266aae;
     color: #fff;
 }
