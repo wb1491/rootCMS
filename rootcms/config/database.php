@@ -17,6 +17,6 @@ return [
     'username' => 'root', // 用户名
     'password' => 'wb1491', // 密码
     'hostport' => '3306', // 端口
-    'prefix' => 'wb_', // 数据库表前缀
+    'prefix' => 'cms_', // 数据库表前缀
     'debug' => false,
 ];
