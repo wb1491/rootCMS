@@ -33,8 +33,14 @@ return [
     "admin/cache"  => ['admin/Index/cache','','ext'=>"html"],
     "admin/upcache/[:type]"  => ['admin/Index/upcache',[],["type"=>"\w+"]],
     "admin/config/[:menuid]" => ['admin/Config/index',[],["menuid"=>"\d+"]],
-    "admin/mailsave$"         => ['admin/Config/mailsave',[],[]],
     "admin/mailcfg/[:menuid]" => ['admin/Config/mail',[],['menuid'=>"\d+"]],
+    "admin/cfgsave$"         => ['admin/Config/cfgsave',[],[]],
+    "admin/attachcfg/[:menuid]" => ['admin/Config/attach',[],['menuid'=>"\d+"]],
+    "admin/additioncfg/[:menuid]"  => ['admin/Config/addition',[],['menuid'=>"\d+"]],
+    "admin/extendcfg/[:menuid]"  => ['admin/Config/extend',[],['menuid'=>"\d+"]],
+    "admin/additionsave$"  => ['admin/Config/additionsave',[],[]],
+    "admin/extendsave$"  => ['admin/Config/extendsave',[],[]],
+    
     "admin/menugl/[:menuid]"  => ['admin/Menu/index',[],['menuid'=>"\d+"]],
     "admin/menuadd/[:menuid]" => ['admin/Menu/add',[],['menuid'=>"\d+"]],
         
