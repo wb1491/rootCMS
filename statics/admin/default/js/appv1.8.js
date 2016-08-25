@@ -350,15 +350,19 @@ function loadURL(a, b){
 }
 function drawBreadCrumb(a){
     var b = $("nav li.active > a"), c = b.length;
-    bread_crumb.empty(), bread_crumb.append($("<li>系统后台</li>")), b.each(function ()
-    {
+    bread_crumb.empty(), 
+    bread_crumb.append($("<li>系统后台</li>")), 
+    b.each(function (){
+        c == b.length && $(this).parent().siblings().addClass("hidden");
+        $(this).parent().hasClass("hidden") && $(this).parent().removeClass("hidden");
+        !$(this).parent().hasClass("open") && $(this).children("b.collapse-sign").trigger("click");
         bread_crumb.append($("<li></li>").html($.trim($(this).clone().children(".badge").remove().end().text()))), 
         --c || (document.title = bread_crumb.find("li:last-child").text());
-    }), void 0 != a && $.each(a, function (a, b)
-    {
+    }), 
+    void 0 != a && $.each(a, function (a, b){
         bread_crumb.append($("<li></li>").html(b)), 
         document.title = bread_crumb.find("li:last-child").text();
-    })
+    });
 }
 function pageSetUp(){
     "desktop" === thisDevice ? ($("[rel=tooltip], [data-rel=tooltip]").tooltip(), $("[rel=popover], [data-rel=popover]").popover(), 
