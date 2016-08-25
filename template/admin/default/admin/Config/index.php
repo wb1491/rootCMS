@@ -5,7 +5,7 @@
       <Admintemplate file="common/Nav.php"/>
       <div class="tab-content padding-10">
         <div id="tab1" class="tab-pane fade active in">
-          <form method='post' class="form-horizontal"  action="{:url('admin/Config/index')}">
+          <form method='post' class="form-horizontal"  action="{:url('admin/Config/cfgsave')}">
             <fieldset>
               <div class="form-group">
                 <label class="col-md-2 control-label">站点名称:</label>
