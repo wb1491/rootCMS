@@ -34,7 +34,10 @@ and open the template in the editor.
 #extr-page #main{
     padding-bottom: 0 !important;
 }
-
+.fix-right{
+    margin-right: 0;
+    padding-right: 0;
+}
 .widget-body .tab-content{
     background-color: #fff;
 }
@@ -43,4 +46,47 @@ and open the template in the editor.
     margin-left: -10px;
     margin-right: -10px;
     margin-bottom: -10px;
+}
+
+.locate {
+    border: 1px solid #ccc;
+    border-top: none;
+    border-left: none;
+    background: #fff;
+    width: 208px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.locate ul {
+    margin: 0;
+    padding: 0;
+    margin-left: -1px;
+    margin-top: -1px;
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+}
+
+.locate li {
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    float: left;
+    width: 69px;
+    height: 40px;
+    text-align: center;
+    list-style: none;
+}
+.locate li a {
+    color: #333;
+    display: block;
+    line-height: 38px;
+    text-decoration: none;
+}
+.locate li.current a {
+    background: #266aae;
+    color: #fff;
 }
