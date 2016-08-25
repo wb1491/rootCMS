@@ -181,10 +181,10 @@ class Config extends \think\Model {
             return false;
         }
         //配置文件地址
-        $filename = CONF_PATH . 'addition' . CONF_EXT;
+        $filename = CONF_PATH . 'extend' . CONF_EXT;
         //检查文件是否可写
         if (is_writable($filename) == false) {
-            $this->error = '请检查[' . CONF_PATH . 'addition' . CONF_EXT . ']文件权限是否可写！';
+            $this->error = '请检查[' . CONF_PATH . 'extend' . CONF_EXT . ']文件权限是否可写！';
             return false;
         }
         if (isset($data[Config('TOKEN_NAME')])) {
