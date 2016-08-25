@@ -60,7 +60,7 @@ class Config extends AdminBase {
         $this->display();
     }
     
-    public function mailsave(){
+    public function cfgsave(){
         if(IS_POST){
             $this->index();
         }
@@ -71,11 +71,12 @@ class Config extends AdminBase {
         if (IS_POST) {
             $this->index();
         } else {
-            $path = PROJECT_PATH . 'Libs/Driver/Attachment/';
+            $path = EXTEND_PATH . 'libs/driver/attachment/';
             $dirverList = glob($path . '*');
             $lang = array(
                 'Local' => '本地存储驱动',
-                'Ftp' => 'FTP远程附件驱动',
+                'Ftp'   => 'FTP远程附件驱动',
+                'Qiniu' => '七牛云存储驱动',
             );
             foreach ($dirverList as $k => $rs) {
                 unset($dirverList[$k]);
@@ -86,9 +87,19 @@ class Config extends AdminBase {
             $this->display();
         }
     }
-
+    
     //高级配置
     public function addition() {
+        $addition = include COMMON_PATH . 'Conf/addition.php';
+        if (empty($addition) || !is_array($addition)) {
+            $addition = array();
+        }
+        $this->assign("addition", $addition);
+        $this->display();
+    }
+    
+    //高级配置的保存
+    public function additionsave(){
         if (IS_POST) {
             if ($this->Config->addition($_POST)) {
                 $this->success("修改成功，请及时更新缓存！");
@@ -96,18 +107,32 @@ class Config extends AdminBase {
                 $error = $this->Config->getError();
                 $this->error($error ? $error : "高级配置更新失败！");
             }
-        } else {
-            $addition = include COMMON_PATH . 'Conf/addition.php';
-            if (empty($addition) || !is_array($addition)) {
-                $addition = array();
-            }
-            $this->assign("addition", $addition);
-            $this->display();
         }
     }
 
     //扩展配置
     public function extend() {
+        $action = input('get.action');
+        $db = M('ConfigField');
+        if ($action) {
+            if ($action == 'delete') {
+                $fid = input('get.fid', 0, 'intval');
+                if ($this->Config->extendDel($fid)) {
+                    cache('Config', NULL);
+                    $this->success("扩展配置项删除成功！");
+                    return true;
+                } else {
+                    $error = $this->Config->getError();
+                    $this->error($error ? $error : "扩展配置项删除失败！");
+                }
+            }
+        }
+        $extendList = $db->order(array('fid' => 'DESC'))->select();
+        $this->assign('extendList', $extendList);
+        $this->display();
+    }
+    
+    public function extendsave(){
         if (IS_POST) {
             $action = input('post.action');
             if ($action) {
@@ -136,25 +161,6 @@ class Config extends AdminBase {
                     $this->error($error ? $error : "配置更新失败！");
                 }
             }
-        } else {
-            $action = input('get.action');
-            $db = M('ConfigField');
-            if ($action) {
-                if ($action == 'delete') {
-                    $fid = input('get.fid', 0, 'intval');
-                    if ($this->Config->extendDel($fid)) {
-                        cache('Config', NULL);
-                        $this->success("扩展配置项删除成功！");
-                        return true;
-                    } else {
-                        $error = $this->Config->getError();
-                        $this->error($error ? $error : "扩展配置项删除失败！");
-                    }
-                }
-            }
-            $extendList = $db->order(array('fid' => 'DESC'))->select();
-            $this->assign('extendList', $extendList);
-            $this->display();
         }
     }
 
