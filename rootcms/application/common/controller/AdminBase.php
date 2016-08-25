@@ -104,7 +104,7 @@ class AdminBase extends CMS {
     final public function error($message = '', $jumpUrl = '', $data = '', $ajax = true) {
         model('admin/Operationlog')->record($message, 0);
         if(IS_AJAX && true === $ajax){
-            $retdata = ['status'=>1,'msg'=>$message,'jumpurl'=>$jumpUrl];
+            $retdata = ['status'=>0,'msg'=>$message,'jumpurl'=>$jumpUrl];
             if(!empty($data)){
                 if(is_array($data)){
                     $retdata = array_merge($retdata,$data);
