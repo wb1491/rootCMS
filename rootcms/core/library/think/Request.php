@@ -83,7 +83,6 @@ class Request
     protected $request = [];
     protected $route   = [];
     protected $put;
-    protected $delete;
     protected $session = [];
     protected $file    = [];
     protected $cookie  = [];
@@ -237,7 +236,7 @@ class Request
         $options['server']      = $server;
         $options['url']         = $server['REQUEST_URI'];
         $options['baseUrl']     = $info['path'];
-        $options['pathinfo']    = ltrim($info['path'], '/');
+        $options['pathinfo']    = '/' == $info['path'] ? '/' : ltrim($info['path'], '/');
         $options['method']      = $server['REQUEST_METHOD'];
         $options['domain']      = $server['HTTP_HOST'];
         $options['content']     = $content;
@@ -490,6 +489,7 @@ class Request
         } elseif (!$this->method) {
             if (isset($_POST[Config::get('var_method')])) {
                 $this->method = strtoupper($_POST[Config::get('var_method')]);
+                $this->{$this->method}($_POST);
             } elseif (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
                 $this->method = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']);
             } else {
@@ -612,16 +612,21 @@ class Request
                     $vars = $this->post(false);
                     break;
                 case 'PUT':
-                    $vars = $this->put(false);
-                    break;
                 case 'DELETE':
-                    $vars = $this->delete(false);
+                case 'PATCH':
+                    $vars = $this->put(false);
                     break;
                 default:
                     $vars = [];
             }
             // 当前请求参数和URL地址中的参数合并
             $this->param = array_merge($this->route(false), $this->get(false), $vars);
+        }
+        if (true === $name) {
+            // 获取包含文件上传信息的数组
+            $file = $this->file();
+            $data = array_merge($this->param, $file);
+            return $this->input($data, '', $default, $filter);
         }
         return $this->input($this->param, $name, $default, $filter);
     }
@@ -712,13 +717,20 @@ class Request
      */
     public function delete($name = '', $default = null, $filter = null)
     {
-        if (is_array($name)) {
-            return $this->delete = is_null($this->delete) ? $name : array_merge($this->delete, $name);
-        }
-        if (is_null($this->delete)) {
-            parse_str(file_get_contents('php://input'), $this->delete);
-        }
-        return $this->input($this->delete, $name, $default, $filter);
+        return $this->put($name, $default, $filter);
+    }
+
+    /**
+     * 设置获取获取PATCH参数
+     * @access public
+     * @param string|array      $name 变量名
+     * @param mixed             $default 默认值
+     * @param string|array      $filter 过滤方法
+     * @return mixed
+     */
+    public function patch($name = '', $default = null, $filter = null)
+    {
+        return $this->put($name, $default, $filter);
     }
 
     /**
@@ -934,6 +946,9 @@ class Request
                     return $default;
                 }
             }
+            if (is_object($data)) {
+                return $data;
+            }
         }
 
         // 解析过滤器
@@ -986,7 +1001,7 @@ class Request
             if (is_callable($filter)) {
                 // 调用函数或者方法过滤
                 $value = call_user_func($filter, $value);
-            } else {
+            } elseif (is_scalar($value)) {
                 if (strpos($filter, '/')) {
                     // 正则过滤
                     if (!preg_match($filter, $value)) {

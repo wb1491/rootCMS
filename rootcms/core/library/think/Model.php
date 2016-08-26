@@ -148,6 +148,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
         if (!isset(self::$links[$model])) {
             // 设置当前模型 确保查询返回模型对象
             $query = Db::connect($this->connection)->model($model);
+
             // 设置当前数据表和模型名
             if (!empty($this->table)) {
                 $query->setTable($this->table);
@@ -755,7 +756,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
                 $value = null;
             }
             if (!in_array($field, $this->change)) {
-                $this->setAttr($field, isset($this->data[$field]) ? $this->data[$field] : $value);
+                $this->setAttr($field, !is_null($value) ? $value : (isset($this->data[$field]) ? $this->data[$field] : $value));
             }
         }
     }
