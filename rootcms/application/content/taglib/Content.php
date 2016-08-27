@@ -115,12 +115,10 @@ class Content {
             return false;
         }
         $catid = $data['catid'];
-        $modelid = getCategory($catid,"modelid");
-        
         $getLastSql = array();
         
-        $db = $this->set_modelid($modelid);
-                
+        $db = $this->set_modelid($catid);
+
         $this->where($data);
         //判断是否启用分页，如果没启用分页则显示指定条数的内容
         if (!isset($data['limit'])) {
@@ -131,11 +129,9 @@ class Content {
             $data['order'] = array('updatetime' => 'DESC', 'id' => 'DESC');
         }
         $moreinfo = isset($data['moreinfo']) && $data['moreinfo'] ? true : false;
-        $dataList = $db->where($this->where)->limit($data['limit'])->order($data['order'])->select();
+        $db->where($this->where)->limit($data['limit'])->order($data['order']);
+        $dataList = $db->select();
         $getLastSql[] = $db->getLastSql();
-        print_r($dataList);
-        echo "\nSQL: ".$getLastSql[0];
-        exit;
         //是否经过ContentOutput处理
         if (isset($data['output']) && $data['output']) {
             CMS()->ContentOutput->setModelid($this->modelid);
@@ -468,8 +464,6 @@ class Content {
                 $categorys = $db->where($where)->order($data['order'])->select();
             }
         }
-        //echo $db->getLastSql();
-        //exit;
         //结果进行缓存
         if ($cache) {
             cache($cacheID, $categorys, $cache);
