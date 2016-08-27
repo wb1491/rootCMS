@@ -114,22 +114,22 @@ function data_to_xml($data, $item = 'item', $id = 'id') {
  */
 function load_ext_file($path) {
     // 加载自定义外部文件
-    if ($files = C('LOAD_EXT_FILE')) {
+    if ($files = config('LOAD_EXT_FILE')) {
         $files = explode(',', $files);
         foreach ($files as $file) {
-            $file = $path . 'Common/' . $file . '.php';
+            $file = $path . 'common/' . $file . '.php';
             if (is_file($file))
                 include $file;
         }
     }
     // 加载自定义的动态配置文件
-    if ($configs = C('LOAD_EXT_CONFIG')) {
+    if ($configs = config('LOAD_EXT_CONFIG')) {
         if (is_string($configs))
             $configs = explode(',', $configs);
         foreach ($configs as $key => $config) {
-            $file = is_file($config) ? $config : $path . 'Conf/' . $config . CONF_EXT;
+            $file = is_file($config) ? $config : $path . 'config/' . $config . CONF_EXT;
             if (is_file($file)) {
-                is_numeric($key) ? C(load_config($file)) : C($key, load_config($file));
+                is_numeric($key) ? config(load_config($file)) : config($key, load_config($file));
             }
         }
     }
@@ -325,7 +325,7 @@ function array2file($array, $filename) {
     return false;
 }
 /**
- * 返回ShuipFCMS对象
+ * 返回CMS对象
  * @return Object
  */
 function CMS() {
