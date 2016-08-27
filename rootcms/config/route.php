@@ -15,6 +15,8 @@ return [
     "show/:catid/:id/[:page]" => ["content/Index/shows",[],["catid"=>"\d+","id"=>"\d+","page"=>"\d+"]],
     //标签显示页
     "tags/:tagid/:tag/[:page]" => ["content/Index/tags",[],["tagid"=>"\d+","tag"=>"\w+","page"=>"\d+"]],
+    //增加前台项目测试路由
+    "test"  => ["content/Test/test",[],[]],
     
     //前台会员相关
     "login"  => ['member/Index/login','','ext'=>"html"],
