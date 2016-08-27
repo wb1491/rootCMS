@@ -35,11 +35,11 @@ class Position {
         }
         $catid = isset($data['cache']) ? (int) $data['catid']:0;
         $thumb = isset($data['thumb']) ? $data['thumb'] : 0;
-        $order = empty($data['order']) ? array("listorder" => "DESC", "id" => "DESC") : $data['order'];
+        $order = empty($data['order']) ? ["listorder" => "DESC", "id" => "DESC"] : $data['order'];
         $num = (int) $data['num'];
 
         $db = db('PositionData');
-        $Position = cache('Position');
+        $Position = sys_cache('Position');
         if ($num == 0) {
             $num = $Position[$posid]['maxnum'];
         }
@@ -72,11 +72,12 @@ class Position {
         }
         $data = $db->where($where)->order($order)->limit($num)->select();
         foreach ($data as $k => $v) {
-            $data[$k]['data'] = unserialize($v['data']);
+            unset($data[$k]['data']);
+            $data[$k] = array_merge($data[$k],unserialize($v['data']));
             $tb = \app\content\model\Content::getInstance($v['modelid']);
             $tmp = $tb::get($v['id']);
-            if(is_object($tmp) && isset($tmp->url)){
-                $data[$k]['data']['url'] = $tmp->url;
+            if(!empty($tmp) && isset($tmp['url'])){
+                $data[$k]['url'] = $tmp['url'];
             }
         }
         //结果进行缓存
