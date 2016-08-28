@@ -38,6 +38,13 @@ and open the template in the editor.
     margin-right: 0;
     padding-right: 0;
 }
+@media only screen and (max-width: 479px) and (min-width: 320px){
+.fix-right{
+    margin-right:inherit;
+    padding-right:inherit;
+}    
+}
+
 .widget-body .tab-content{
     background-color: #fff;
 }
@@ -90,4 +97,18 @@ and open the template in the editor.
 .locate li.current span {
     background: #266aae;
     color: #fff;
+}
+
+.form-horizontal header {
+    display: block;
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(0,0,0,.2);
+    background: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    color: #232323;
+    margin: 10px 14px 15px;
+}
+.form-group .gray{
+    padding-top:5px;
 }
