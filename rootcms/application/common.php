@@ -289,6 +289,26 @@ function file_exists_case($filename) {
     }
     return false;
 }
+
+/**
+ * 根据模型名称返还id
+ * @param string $modelname 模型名称
+ * @return int
+ */
+function getModelIdByName($modelname){
+    $modelid = 0;
+    if(!empty($modelname)){
+        $model = sys_cache("Model");
+        foreach($model as $id => $v){
+            if($v['tablename'] == $modelname){
+                $modelid = $id;
+                break;
+            }
+        }
+    }
+    return $modelid;
+}
+
 /**
  * 根据PHP各种类型变量生成唯一标识号
  * @param mixed $mix 变量
@@ -718,7 +738,8 @@ function unescape($str) {
             $ret .= $str[$i];
     }
     return $ret;
-}/**
+}
+/**
  * 字符截取
  * @param $string 需要截取的字符串
  * @param $length 长度
@@ -766,7 +787,8 @@ function urlDomain($url) {
         return $pathinfo['scheme'] . "://" . $pathinfo['host'] . "/";
     }
     return false;
-}/**
+}
+/**
  * 获取当前页面完整URL地址
  * @return type 地址
  */
@@ -776,7 +798,8 @@ function get_url() {
     $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
     $relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self . (isset($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : $path_info);
     return $sys_protocal . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . $relate_url;
-}/**
+}
+/**
  * 返回附件类型图标
  * @param $file 附件名称
  * @param $type png为大图标，gif为小图标
@@ -919,7 +942,8 @@ function parseTemplateFile($templateFile = '') {
  */
 function hits($catid, $id) {
     return \app\content\model\content::getInstance(getCategory($catid, 'modelid'))->where(array('id' => $id))->column('views');
-}/**
+}
+/**
  * 标题链接获取
  * @param type $catid 栏目id
  * @param type $id 信息ID
@@ -927,7 +951,8 @@ function hits($catid, $id) {
  */
 function titleurl($catid, $id) {
     return \app\content\model\content::getInstance(getCategory($catid, 'modelid'))->where(array('id' => $id))->column("url");
-}/**
+}
+/**
  * 获取文章评论总数
  * @param type $catid 栏目ID
  * @param type $id 信息ID
@@ -936,7 +961,8 @@ function titleurl($catid, $id) {
 function commcount($catid, $id) {
     $comment_id = "c-{$catid}-{$id}";
     return db('Comments')->where(array("comment_id" => $comment_id, "parent" => 0, "approved" => 1))->count();
-}/**
+}
+/**
  * 生成标题样式
  * @param $style   样式，通常时字段style，以“;”隔开，第一个是文字颜色，第二个是否加粗
  * @param $html    是否显示完整的STYLE样式代码
@@ -957,7 +983,8 @@ function title_style($style, $html = 1) {
         $str .= '" ';
     }
     return $style ? $str : "";
-}/**
+}
+/**
  * 生成缩略图
  * @param type $imgurl 图片地址
  * @param type $width 缩略图宽度
@@ -1022,7 +1049,8 @@ function thumb($imgurl, $width = 100, $height = 100, $thumbType = 0, $smallpic =
     }
     $_thumb_cache[$key] = str_replace($basename, $newFileName, $imgurl);
     return $_thumb_cache[$key];
-}/**
+}
+/**
  * 获取用户头像 
  * @param type $uid 用户ID
  * @param int $format 头像规格，默认参数90，支持 180,90,45,30
@@ -1031,7 +1059,8 @@ function thumb($imgurl, $width = 100, $height = 100, $thumbType = 0, $smallpic =
  */
 function getavatar($uid, $format = 180, $dbs = false) {
     return service('Passport')->getUserAvatar($uid, $format, $dbs);
-}/**
+}
+/**
  * 邮件发送
  * @param type $address 接收人 单个直接邮箱地址，多个可以使用数组
  * @param type $title 邮件标题
@@ -1490,26 +1519,26 @@ function is_weixin(){
  * @param type $where 查询条件
  * @return mixed 如果成功则返回规则数组，否则放回false
  */
-function parseWhere($where=""){
-        $retarray = [];
-        
-        $where = str_replace(['{','}'],[' ',' '],$where);
-        $where = preg_replace("/\s*\(\s*/", "(", $where);
-        $where = preg_replace("/\s*\)\s*/", ")", $where);
-        $tmp = preg_split("/\s+/", trim($where));
-        if(count($tmp) % 4 != 3){
-            return FALSE;
-        }
-        //print_r($tmp);
-        $flg = "and";
-        for($i=0;$i<count($tmp);$i+=4){
-            if($flg == "and"){
-                $retarray[0][] = [$tmp[$i],$tmp[$i+1],$tmp[$i+2]]; 
-            }else{
-                $retarray[1][] = [$tmp[$i],$tmp[$i+1],$tmp[$i+2]]; 
-            }
-            $flg = strtolower($tmp[$i+3]);
-        }
-        
-        return $retarray;
+function parseWhere($where = "") {
+    $retarray = [];
+
+    $where = str_replace(['{', '}'], [' ', ' '], $where);
+    $where = preg_replace("/\s*\(\s*/", "(", $where);
+    $where = preg_replace("/\s*\)\s*/", ")", $where);
+    $tmp = preg_split("/\s+/", trim($where));
+    if (count($tmp) % 4 != 3) {
+        return FALSE;
     }
+    //print_r($tmp);
+    $flg = "and";
+    for ($i = 0; $i < count($tmp); $i+=4) {
+        if ($flg == "and") {
+            $retarray[0][] = [$tmp[$i], $tmp[$i + 1], $tmp[$i + 2]];
+        } else {
+            $retarray[1][] = [$tmp[$i], $tmp[$i + 1], $tmp[$i + 2]];
+        }
+        $flg = strtolower($tmp[$i + 3]);
+    }
+
+    return $retarray;
+}
