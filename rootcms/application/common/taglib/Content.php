@@ -370,7 +370,7 @@ class Content extends TagLib {
     public function tagContent($tag, $content) {
         $tag['catid'] = $catid = isset($tag['catid'])?$tag['catid'] : 0;
         //每页显示总数
-        $tag['num'] = $num = isset($tag['num']) ? (int) $tag['num'] : 10;
+        $tag['num'] = $num = isset($tag['num']) ? (int) $tag['num'] : 0;
         //当前分页参数
         $tag['page'] = $page = (isset($tag['page'])) ? ( (substr($tag['page'], 0, 1) == '$') ? $tag['page'] : (int) $tag['page'] ) : 0;
         //分页函数，默认page
@@ -584,7 +584,7 @@ class Content extends TagLib {
         $parseStr .= ' $Position_tag = new \app\content\taglib\Position();';
         $parseStr .= ' if(method_exists($Position_tag, "' . $action . '")){';
         $parseStr .= '     $' . $return . ' = $Position_tag->' . $action . '(' . self::arr_to_html($tag) . ');';
-        $parseStr .= ' };';
+        $parseStr .= ' }';
         $parseStr .= ' ?>';
         
         $this->tpl->parse($content);
@@ -860,7 +860,7 @@ class Content extends TagLib {
      */
     private static function arr_to_html($data) {
         if (is_array($data)) {
-            $str = 'array(';
+            $str = '[';
             foreach ($data as $key => $val) {
                 if (is_array($val)) {
                     $str .= "'$key'=>" . self::arr_to_html($val) . ",";
@@ -879,7 +879,7 @@ class Content extends TagLib {
                     }
                 }
             }
-            return $str . ')';
+            return $str . ']';
         }
         return false;
     }
