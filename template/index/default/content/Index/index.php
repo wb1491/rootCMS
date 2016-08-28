@@ -11,8 +11,8 @@
           <position action="position" num='5'  thumb='1' posid="2">
           <volist name="data" id="vo" key='k'>
           <div class="item <if condition='$k eq 1'>active</if>">
-            <a href="{$vo.data.url}" target="_blank">
-              <img  src="{$config_siteurl}{$vo.data.thumb}" alt="">
+            <a href="{$vo.url}" target="_blank">
+              <img  src="{$vo.thumb}" alt="">
               <h3 class="lefttit tm70 Mfont Mbreak">{$vo.data.title}</h3>
             </a>
           </div>
@@ -44,7 +44,7 @@
             <ul class="artlist border ttxw">
               <position action="position" posid="3" num='21'>
               <volist name="data" id="vo" key='k'>
-              <li><a href="{$vo.data.url}">{$vo.data.title}</a></li>
+              <li><a href="{$vo.url}">{$vo.title}</a></li>
               </volist>
               </position>
             </ul>
@@ -75,20 +75,20 @@
         <position action="position" posid="7" num='1'>
         <volist name="data" id="vo">
         <div class="col-md-12 col-xs-6 Mfont indexzb">
-          <a <if condition=" time() egt $vo[data][startime] && $vo[data][endtime] gt time()  "> class='active'  href="{$vo.data.url}" <else/> class='overtime'</if>  >
-            {$vo.data.title}<br>{$vo.data.description|str_cut=###,32}<br>
-               <br>{$vo.data.startime|date="Y-m-d H:i",###}<br>
-              <br>{$vo.data.endtime|date="Y-m-d H:i",###}</a>
+          <a <if condition=" time() egt $vo[startime] && $vo[endtime] gt time()  "> class='active'  href="{$vo.url}" <else/> class='overtime'</if>  >
+            {$vo.title}<br>{$vo.description|str_cut=###,32}<br>
+            <br>{$vo.startime|date="Y-m-d H:i",###}<br>
+            <br>{$vo.endtime|date="Y-m-d H:i",###}</a>
         </div>
         </volist>
         </position>
         <position action="position" posid="8" num='1'>
         <volist name="data" id="vo">
         <div class="col-md-12 col-xs-6 Mfont indexzb">
-          <a <if condition=" time() egt $vo['startime'] && $vo['endtime'] gt time()  "> class='active'  href="{$vo.data.url}" <else/> class='overtime'</if>  >
-            {$vo.data.title}<br>{$vo.data.description|str_cut=###,32}<br>
-               <br>{$vo.data.startime|date="Y-m-d H:i",###}<br>
-              <br>{$vo.data.endtime|date="Y-m-d H:i",###}</a>
+          <a <if condition=" time() egt $vo['startime'] && $vo['endtime'] gt time()  "> class='active'  href="{$vo.url}" <else/> class='overtime'</if>  >
+            {$vo.title}<br>{$vo.description|str_cut=###,32}<br>
+               <br>{$vo.startime|date="Y-m-d H:i",###}<br>
+              <br>{$vo.endtime|date="Y-m-d H:i",###}</a>
         </div>
         </volist>
         </position>
@@ -185,7 +185,7 @@
   <div class="row indexblock">
     <div class="col-xs-12 padding0">
       <ul class="links">
-        <get sql="select * from wb_links where visible=1 order by updated DESC">
+        <get sql="select * from cms_links where visible=1 order by updated DESC">
         <volist name='data' id="vo">
         <li>
           <a href="{$vo.url}"<if condition="$vo['target']">target='{$vo.target}'</if> title="{$vo.name}">

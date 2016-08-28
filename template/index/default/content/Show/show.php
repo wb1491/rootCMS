@@ -178,7 +178,7 @@
       </php>
     </div>
     <ul class="prenext">
-      <li>    <pre target="1" msg="   " /></li>
+      <li>    <previous target="1" msg="   " /></li>
       <li>   <next target="1" msg="   " /></li>
     </ul>
   </div>

@@ -14,9 +14,9 @@
       <position action="position" num='5'  posid="1">
           <volist name="data" id="vo" key="k">
       <div class="item <if condition=' $k eq 1'>active</if>">
-        <a href="{$vo.data.url}" target="_blank">
-          <img class="left" src="{$vo.data.imgurl}" alt="">
-          <h3 class="lefttit tm70 Mfont Mbreak">{$vo.data.title}</h3>
+        <a href="{$vo.url}" target="_blank">
+          <img class="left" src="{$vo.imgurl}" alt="">
+          <h3 class="lefttit tm70 Mfont Mbreak">{$vo.title}</h3>
         </a>
       </div>
            </volist>
