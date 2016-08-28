@@ -17,7 +17,7 @@ class AppInit {
     //执行入口
     public function run(&$param) {
         // 注册AUTOLOAD方法
-        spl_autoload_register('app\common\behavior\AppInit::autoload');
+        spl_autoload_register('app\common\behavior\AppInit::autoload',true,true);
         //检查是否安装
         if ($this->richterInstall() == false) {
             redirect('./install.php');
@@ -76,8 +76,8 @@ class AppInit {
     static public function autoload($class) {
         //内容模型content_xx.class.php类自动加载
         if (in_array($class, array('content_form', 'content_input', 'content_output', 'content_update', 'content_delete'))) {
-            \app\content\model\content::classGenerate();
-            require_cache(RUNTIME_PATH . "{$class}.class.php");
+            \app\content\model\Content::classGenerate();
+            require_cache(RUNTIME_PATH . "{$class}.php");
             return;
         }
     }
