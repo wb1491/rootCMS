@@ -1,10 +1,12 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// +----------------------------------------------------------------------
+// | rootCMS 访问路由配置
+// +----------------------------------------------------------------------
+// | Copyright (c) 2015-2016 http://www.rootcms.cn, All rights reserved.
+// +----------------------------------------------------------------------
+// | Author: 
+// +----------------------------------------------------------------------
 
 return [
     //首页
