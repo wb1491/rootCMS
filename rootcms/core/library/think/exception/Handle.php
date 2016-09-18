@@ -2,7 +2,7 @@
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK IT ]
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006-2015 http://thinkphp.cn All rights reserved.
+// | Copyright (c) 2006-2016 http://thinkphp.cn All rights reserved.
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
@@ -14,7 +14,6 @@ namespace think\exception;
 use Exception;
 use think\App;
 use think\Config;
-use think\Console;
 use think\console\Output;
 use think\Lang;
 use think\Log;
@@ -91,7 +90,7 @@ class Handle
         if (App::$debug) {
             $output->setVerbosity(Output::VERBOSITY_DEBUG);
         }
-        (new Console)->renderException($e, $output);
+        $output->renderException($e);
     }
 
     /**
@@ -210,11 +209,15 @@ class Handle
         }
 
         if (strpos($message, ':')) {
-            $name = strstr($message, ':', true);
-            return Lang::has($name) ? Lang::get($name) . ' ' . strstr($message, ':') : $message;
-        } else {
-            return Lang::has($message) ? Lang::get($message) : $message;
+            $name    = strstr($message, ':', true);
+            $message = Lang::has($name) ? Lang::get($name) . strstr($message, ':') : $message;
+        } elseif (strpos($message, ',')) {
+            $name    = strstr($message, ',', true);
+            $message = Lang::has($name) ? Lang::get($name) . ':' . substr(strstr($message, ','), 1) : $message;
+        } elseif (Lang::has($message)) {
+            $message = Lang::get($message);
         }
+        return $message;
     }
 
     /**
