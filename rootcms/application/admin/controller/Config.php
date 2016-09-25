@@ -113,12 +113,12 @@ class Config extends AdminBase {
     //扩展配置
     public function extend() {
         $action = input('get.action');
-        $db = M('ConfigField');
+        $db = db('ConfigField');
         if ($action) {
             if ($action == 'delete') {
                 $fid = input('get.fid', 0, 'intval');
                 if ($this->Config->extendDel($fid)) {
-                    cache('Config', NULL);
+                    sys_cache('Config', NULL);
                     $this->success("扩展配置项删除成功！");
                     return true;
                 } else {
