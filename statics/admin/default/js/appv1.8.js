@@ -580,12 +580,17 @@ initApp = function (a){
                 var obj = $(e).find("a:first");
                 var ico = obj.find("i.fa")[0].className;
                 var txt = obj.text();
-                if(j<7){
+                if(j==0){
+                    a.append("<div class=\"btn-header transparent pull-left\">\n\
+                        <span>\n\
+                            <a href='javascript:void(0);' data-index='" + i + "' title='" + txt + "' \n\
+                                data-url='" + obj.attr("href") + "'><i class='" + ico + "'></i></a></span></div>");
+                }else if(j<9){
                     a.append("<div class=\"btn-header transparent pull-left\">\n\
                         <span>\n\
                             <a href='javascript:void(0);' data-index='" + i + "' \n\
                                 data-url='" + obj.attr("href") + "'><i class='" + ico + "'></i>" + txt + "</a></span></div>");
-                }else if(j==7){
+                }else if(j==9){
                     a.append('<span class="project-selector dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-angle-double-down"></i></span>');
                     a.append('<ul class="dropdown-menu pull-right"></ul>');
                 }else{
