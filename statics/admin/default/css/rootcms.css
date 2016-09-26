@@ -34,15 +34,24 @@ and open the template in the editor.
 #extr-page #main{
     padding-bottom: 0 !important;
 }
+.fix-left{
+    margin-left: 0;
+    padding-left: 0;
+}
 .fix-right{
     margin-right: 0;
     padding-right: 0;
 }
 @media only screen and (max-width: 479px) and (min-width: 320px){
-.fix-right{
-    margin-right:inherit;
-    padding-right:inherit;
-}    
+    .fix-right{
+        margin-right:13px;
+        padding-right:inherit;
+    }
+    .fix-left{
+        margin-left: 13px;
+        padding-left: inherit;
+    }
+    
 }
 
 .widget-body .tab-content{
