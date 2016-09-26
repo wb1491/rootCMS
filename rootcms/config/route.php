@@ -44,6 +44,9 @@ return [
     "admin/extendcfg/[:menuid]"  => ['admin/Config/extend',[],['menuid'=>"\d+"]],
     "admin/additionsave$"  => ['admin/Config/additionsave',[],[]],
     "admin/extendsave$"  => ['admin/Config/extendsave',[],[]],
+    "admin/behavior$"  => ['admin/Behavior/index',[],[]],
+    "admin/behaviorlogs$"  => ['admin/Behavior/logs',[],[]],
+    "admin/behavioradd$"  => ['admin/Behavior/add',[],[]],
     
     "admin/menugl/[:menuid]"  => ['admin/Menu/index',[],['menuid'=>"\d+"]],
     "admin/menuadd/[:menuid]" => ['admin/Menu/add',[],['menuid'=>"\d+"]],
