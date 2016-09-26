@@ -35,9 +35,10 @@
     vertical-align: middle;
  }
  #topMenu_bottons a{
-     font-size: 15px;
+     font-size: 13px;
      font-weight: 300;
-     padding-right: 8px;
+     padding-right: 5px;
+     padding-top: 3px;
  }
  #topMenu_bottons > span.project-selector{
      margin-top:15px;
