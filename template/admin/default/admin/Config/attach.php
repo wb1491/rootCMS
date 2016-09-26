@@ -57,9 +57,11 @@
                       <input type="text" class="form-control" name="ftphost" id="ftphost" size="30" value="{$Site.ftphost}"/>
                     </div>
                     <div class="col-md-6">
-                      <label class="col-md-6 control-label">FTP服务器端口:</label>
-                      <div class="col-md-6 fix-right">
-                      <input type="text" class="form-control" name="ftpport" id="ftpport" size="5" value="{$Site.ftpport}"/>
+                      <div class="row">
+                        <label class="col-md-6 control-label">FTP服务器端口:</label>
+                        <div class="col-md-6">
+                        <input type="text" class="form-control" name="ftpport" id="ftpport" size="5" value="{$Site.ftpport}"/>
+                        </div>
                       </div>
                     </div></div>
                 </div>
