@@ -181,7 +181,19 @@ class AdminBase extends CMS {
      */
     protected function page($total, $size = 20, $number = 0, $config = array()) {
         $Page = parent::page($total, $size, $number, $config);
-        $Page->SetPager('default', '<span class="all">共有{recordcount}条信息</span>{first}{prev}{liststart}{list}{listend}{next}{last}');
+        $strl = '<div class="col-sm-4 col-xs-12 hidden-xs">'
+            . '<div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">'
+            . '共有{recordcount}条信息'
+            . '</div>'
+            . '</div>';
+        $Page->SetPager('default', $strl.' '
+            . '<div class="col-sm-8 col-xs-12 hidden-xs">'
+            . '<div class="dataTables_paginate paging_simple_numbers" id="dt_basic_paginate">'
+            . '<ul class="pagination pagination-sm">'
+            . '{first}{prev}{liststart}{list}{listend}{next}{last}'
+            . '</ul>'
+            . '</div>'
+            . '</div>');
         return $Page;
     }
 
