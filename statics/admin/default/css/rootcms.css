@@ -116,3 +116,15 @@ and open the template in the editor.
 .form-group .gray{
     padding-top:5px;
 }
+.h_a {
+    padding: 5px 9px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ffffff;
+    color: #666666;
+    font-weight: 700;
+    background: #e6e6e6;
+    font-size: 12px;
+}
+.mb10 {
+    margin-bottom: 10px !important;
+}
