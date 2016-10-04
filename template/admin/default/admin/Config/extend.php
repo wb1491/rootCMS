@@ -4,7 +4,7 @@
       <Admintemplate file="common/Nav.php"/>
         <div class="tab-content padding-10">
           <div id="tab1" class="tab-pane fade active in">
-            <form method='post'  class="form-horizontal"  action="{:url('Config/extend')}">
+            <form method='post'  class="form-horizontal"  action="{:url('admin/Config/extendsave')}">
               <input type="hidden" name="action" value="add"/>
               <header>添加扩展配置项</header>
               <fieldset>
@@ -53,7 +53,7 @@
                       添加</button></div>
             </div>
           </form>
-          <form method='post'   id="myform" class="form-horizontal"  action="{:url('Config/extend')}">
+          <form method='post'   id="myform" class="form-horizontal"  action="{:url('admin/Config/extendsave')}">
             <header>扩展配置 ，用法：模板调用标签：<literal>{:cache('Config</literal>.键名')}，PHP代码中调用：<literal>cache('Config</literal>.键名');</header>
             <fieldset>
                   <volist name="extendList" id="vo">
@@ -92,7 +92,7 @@
                 </volist>
                 <div class="form-actions">
                     <div class="text-center">
-                        <button class="btn btn_primary" type="submit">
+                        <button class="btn btn-primary" type="submit">
                         <i class="fa fa-save"></i>
                         提交</button>
                     </div>
@@ -106,7 +106,6 @@
       </div>
 
     </div>
-    <script src="{$config_siteurl}statics/js/common.js?v"></script>
     <script>
       function extend_type(type) {
           if (type == 'radio' || type == 'select') {
