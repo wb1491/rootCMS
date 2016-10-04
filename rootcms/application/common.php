@@ -530,6 +530,10 @@ function page($total, $size = 0, $number = 0, $config = array()) {
         'jumpaction' => '',
         //当跳转方式为下拉菜单时最多同时显示的页码数量，0为全部显示，默认为50
         'jumplong' => 50,
+        //包裹页码链接的标签
+        'pagetag' => "",
+        //包裹页码链接标签样式
+        'pagetagclass' => "",
     );
     //覆盖配置
     if (!empty($config) && is_array($config)) {
