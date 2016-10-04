@@ -11,13 +11,18 @@
 // 异常错误报错级别,
 error_reporting(E_ERROR | E_PARSE );
 
+$extend = array(); 
+//检查是否存在扩展配置文件
+if(file_exists(CONF_PATH."extend.php")){
+    $extend = require_once CONF_PATH.'extend.php';
+}
 /**
  * 项目公共配置文件
  * 该文件请不要修改，如果要覆盖惯例配置的值，可在应用配置文件中设定和惯例不符的配置项
  * 配置名称大小写任意，系统会统一转换成小写
  * 所有配置参数都可以在生效前动态改变
  */
-return [
+$conf = [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
@@ -158,3 +163,5 @@ return [
     'data_cache_prefix' => '6pe_', // 缓存前缀
     
 ];
+
+return empty($extend)? $conf : array_merge($conf,$extend);
