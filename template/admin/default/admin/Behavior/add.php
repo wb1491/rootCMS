@@ -1,8 +1,5 @@
-<?php if (!defined('SHUIPF_VERSION')) exit(); ?>
-<Admintemplate file="Common/Head"/>
-<body class="J_scroll_fixed">
+<Admintemplate file="Common/Nav"/>
 <div class="wrap">
-  <Admintemplate file="Common/Nav"/>
   <div class="h_a">行为规则使用说明</div>
   <div class="prompt_text">
     <p><b>规则定义格式1：</b> </p>
