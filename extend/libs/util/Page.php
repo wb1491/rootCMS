@@ -224,13 +224,13 @@ class Page {
             //如果当前页码等于$i，表示当前页，进行高亮显示
             //此处不分静态动态页面
             if ($i == $cfg ['pageindex']) {
-                $pList .= '<span class="' . $cfg['currentclass'] . '" >' . str_replace('*', $i, $cfg['list']) . '</span>';
+                $pList .= '<li class="paginate_button ' . $cfg['currentclass'] . '"><a href="javascript:void(0);">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
             } else {
                 //此处是为了照顾静态地址生成时，第一页不显示当前分页1，启用该方法，静态地址需要$this->pageRule传入的是array，并且包含两个 index,list。index是首页规则,list是其他分页规则
                 if ($this->Static && $i == 1) {
-                    $pList .= '<a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                    $pList .= '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                 } else {
-                    $pList .= '<a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                    $pList .= '<li class="paginate_button"><a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                 }
             }
         }
@@ -239,39 +239,39 @@ class Page {
             if ($cfg ['listsidelong'] < $pStart) {
                 for ($i = 1; $i <= $cfg ['listsidelong']; $i++) {
                     if ($this->Static && $i == 1) {
-                        $pListStart .= '<a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                        $pListStart .= '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                     } else {
-                        $pListStart .= '<a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg ['list']) . '</a>';
+                        $pListStart .= '<li class="paginate_button"><a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg ['list']) . '</a></li>';
                     }
                 }
-                $pListStart .= ($cfg['listsidelong'] + 1) == $pStart ? '' : ('<span>' . $cfg['more'] . '</span> ');
+                $pListStart .= ($cfg['listsidelong'] + 1) == $pStart ? '' : ('<li class="paginate_button">' . $cfg['more'] . '</li> ');
             } else {
                 if ($cfg['listsidelong'] >= $pStart && $pStart > 1) {
                     for ($i = 1; $i <= ($pStart - 1); $i++) {
                         if ($this->Static && $i == 1) {
-                            $pListStart .= '<a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                            $pListStart .= '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                         } else {
-                            $pListStart .= '<a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                            $pListStart .= '<li class="paginate_button"><a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                         }
                     }
                 }
             }
             if (($cfg['pagecount'] - $cfg['listsidelong']) > $pEnd) {
-                $pListEnd = '<span>' . $cfg ['more'] . '</span>' . $pListEnd;
+                $pListEnd = '<li class="paginate_button">' . $cfg ['more'] . '</li>' . $pListEnd;
                 for ($i = (($cfg ['pagecount'] - $cfg['listsidelong']) + 1); $i <= $cfg['pagecount']; $i++) {
                     if ($this->Static && $i == 1) {
-                        $pListEnd .= '<a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                        $pListEnd .= '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                     } else {
-                        $pListEnd .= '<a href="' . str_replace('*', $i, $cfg ['link']) . '">' . str_replace('*', $i, $cfg['list']) . ' </a>';
+                        $pListEnd .= '<li class="paginate_button"><a href="' . str_replace('*', $i, $cfg ['link']) . '">' . str_replace('*', $i, $cfg['list']) . ' </a></li>';
                     }
                 }
             } else {
                 if (($cfg['pagecount'] - $cfg['listsidelong']) <= $pEnd && $pEnd < $cfg['pagecount']) {
                     for ($i = ($pEnd + 1); $i <= $cfg ['pagecount']; $i++) {
                         if ($this->Static && $i == 1) {
-                            $pListEnd .= '<a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a>';
+                            $pListEnd .= '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . str_replace('*', $i, $cfg['list']) . '</a></li>';
                         } else {
-                            $pListEnd .= ' <a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . ' </a>';
+                            $pListEnd .= '<li class="paginate_button"><a href="' . str_replace('*', $i, $cfg['link']) . '">' . str_replace('*', $i, $cfg['list']) . ' </a></li>';
                         }
                     }
                 }
@@ -282,20 +282,20 @@ class Page {
         if ($cfg['pageindex'] > 1) {
             //第一页链接的HTML代码
             if ($this->Static) {
-                $pFirst = '<a href="' . $this->pageRule['index'] . '">' . $cfg['first'] . '</a>';
+                $pFirst = '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . $cfg['first'] . '</a></li>';
             } else {
-                $pFirst = '<a href="' . str_replace('*', 1, $cfg['link']) . '">' . $cfg['first'] . '</a>';
+                $pFirst = '<li class="paginate_button"><a href="' . str_replace('*', 1, $cfg['link']) . '">' . $cfg['first'] . '</a></li>';
             }
             //显示上一页HTML代码
             //如果生成静态，且上一页为首页时
             if ($this->Static && ($cfg['pageindex'] - 1) == 1) {
-                $pPrev = '<a href="' . $this->pageRule['index'] . '">' . $cfg ['prev'] . '</a> '; //显示首页
+                $pPrev = '<li class="paginate_button"><a href="' . $this->pageRule['index'] . '">' . $cfg ['prev'] . '</a></li> '; //显示首页
             } else {
                 //显示上一页
                 if ($this->Static_Size && $cfg['pageindex'] - 1 <= $this->Static_Size) {
-                    $pPrev = '<a href="' . str_replace('*', $cfg['pageindex'] - 1, $this->urlParameters($_GET)) . '">' . $cfg['prev'] . '</a>';
+                    $pPrev = '<li class="paginate_button"><a href="' . str_replace('*', $cfg['pageindex'] - 1, $this->urlParameters($_GET)) . '">' . $cfg['prev'] . '</a></li>';
                 } else {
-                    $pPrev = '<a href="' . str_replace('*', $cfg['pageindex'] - 1, $cfg['link']) . '">' . $cfg['prev'] . '</a>';
+                    $pPrev = '<li class="paginate_button"><a href="' . str_replace('*', $cfg['pageindex'] - 1, $cfg['link']) . '">' . $cfg['prev'] . '</a></li>';
                 }
             }
         }
@@ -303,13 +303,13 @@ class Page {
         //下一页，尾页
         if ($cfg ['pageindex'] < $cfg ['pagecount']) {
             //最后一页
-            $pLast = '<a href="' . str_replace('*', $cfg['pagecount'], $cfg['link']) . '">' . $cfg['last'] . '</a>';
+            $pLast = '<li class="paginate_button"><a href="' . str_replace('*', $cfg['pagecount'], $cfg['link']) . '">' . $cfg['last'] . '</a></li>';
             //下一页
             //如果下一页还是在生成静态页访问内
             if ($this->Static_Size && $cfg['pageindex'] + 1 <= $this->Static_Size) {
-                $pNext = '<a href="' . str_replace('*', $cfg['pageindex'] + 1, $this->urlParameters($_GET)) . '">' . $cfg['next'] . '</a>';
+                $pNext = '<li class="paginate_button"><a href="' . str_replace('*', $cfg['pageindex'] + 1, $this->urlParameters($_GET)) . '">' . $cfg['next'] . '</a></li>';
             } else {
-                $pNext = '<a href="' . str_replace('*', $cfg['pageindex'] + 1, $cfg['link']) . '">' . $cfg['next'] . '</a>';
+                $pNext = '<li class="paginate_button"><a href="' . str_replace('*', $cfg['pageindex'] + 1, $cfg['link']) . '">' . $cfg['next'] . '</a></li>';
             }
         }
 
