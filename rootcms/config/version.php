@@ -12,5 +12,7 @@
 return [
     "appname" => "rootCMS", //产品名称
     "build" => 20160605, //产品流水号
-    "version" => "2.0.5", //产品版本号
+    "version" => "1.0.5", //产品版本号
+    "description" => "基于TP5的CMS管理系统", //产品简述
+    "authtime" => "2015-2017", 
 ];
