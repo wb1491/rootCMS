@@ -193,7 +193,12 @@ class AdminBase extends CMS {
             . '{first}{prev}{liststart}{list}{listend}{next}{last}'
             . '</ul>'
             . '</div>'
-            . '</div>');
+            . '</div>',
+            array( //SetPager第三个参数，并入的设置
+                "currentclass" => "active",
+                "pagetag" => "li",
+                "pagetagclass" => "paginate_button",
+            ));
         return $Page;
     }
 
