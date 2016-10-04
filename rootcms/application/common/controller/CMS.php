@@ -62,6 +62,7 @@ class CMS extends Controller {
         define('MODULE_EXTRESDIR', 'statics'.DS.'extres'. DS . strtolower(MODULE_NAME) . DS );
         
         $Config = sys_cache("Config");
+        $Config['version'] = \think\Config::get("version");
         self::$Cache['Config'] = $Config;
         $config_siteurl = $Config['siteurl'];
         if (isModuleInstall('Domains')) {
