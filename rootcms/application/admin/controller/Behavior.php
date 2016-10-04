@@ -36,6 +36,10 @@ class Behavior extends AdminBase {
         $page = $this->page($count, 20);
         $action = $this->behavior->where($where)->limit($page->firstRow . ',' . $page->listRows)->order(array("id" => "desc"))->select();
 
+        $data = array();
+        foreach ($action as $k => $v){
+            $data[$k] = $v->toArray();
+        }
         $this->assign("Page", $page->show('Admin'));
         $this->assign('data', $action);
         $this->display();
