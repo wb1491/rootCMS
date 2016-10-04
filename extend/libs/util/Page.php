@@ -129,7 +129,7 @@ class Page {
     private function urlParameters($url = array()) {
         if(empty($url)){
             $request = \think\Request::instance();
-            $url = $request->param();
+            $url = $request->except($this->PageParam);
         }
         foreach ($url as $key => $val) {
             if ($key != $this->PageParam && $key != "_URL_") {
@@ -446,7 +446,8 @@ class Page {
      * 获取当前分页号
      */
     public function GetCurrentPage() {
-        $this->Current_page = ($_GET[$this->PageParam] <= intval($this->Total_Pages) ? ($_GET[$this->PageParam] < 1 ? 1 : intval($_GET[$this->PageParam])) : intval($this->Total_Pages));
+        $page = input("param.".$this->PageParam);
+        $this->Current_page = ($page <= intval($this->Total_Pages) ? ($page < 1 ? 1 : intval($page)) : intval($this->Total_Pages));
     }
 
     public function __set($Param, $value) {
