@@ -10,7 +10,8 @@
 
 namespace app\common\model;
 
-class Config extends \think\Model {
+
+class Config extends Model {
 
     /**
      * 增加扩展配置项
@@ -150,10 +151,10 @@ class Config extends \think\Model {
             return false;
         }
         //令牌验证
-//        if (!$this->autoCheckToken($data)) {
-//            $this->error = L('_TOKEN_ERROR_');
-//            return false;
-//        }
+        if (!$this->autoCheckToken($data)) {
+            $this->error = L('_TOKEN_ERROR_');
+            return false;
+        }
         //去除token
         unset($data[config("TOKEN_NAME")]);
         foreach ($data as $key => $value) {
