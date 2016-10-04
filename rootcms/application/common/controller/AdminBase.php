@@ -183,7 +183,7 @@ class AdminBase extends CMS {
         $Page = parent::page($total, $size, $number, $config);
         $strl = '<div class="col-sm-4 col-xs-12 hidden-xs">'
             . '<div class="dataTables_info" id="dt_basic_info" role="status" aria-live="polite">'
-            . '共有{recordcount}条信息'
+            . '共有{recordcount}条信息,分{pagecount}页显示'
             . '</div>'
             . '</div>';
         $Page->SetPager('default', $strl.' '
