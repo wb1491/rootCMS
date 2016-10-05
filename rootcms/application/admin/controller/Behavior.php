@@ -40,7 +40,8 @@ class Behavior extends AdminBase {
         foreach ($action as $k => $v){
             $data[$k] = $v->toArray();
         }
-        $this->assign("Page", $page->show('Admin'));
+        $objpage = $page->show("Admin");
+        $this->assign("Page", $objpage);
         $this->assign('data', $action);
         $this->display();
     }
