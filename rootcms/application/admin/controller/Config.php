@@ -90,7 +90,7 @@ class Config extends AdminBase {
     
     //高级配置
     public function addition() {
-        $addition = include COMMON_PATH . 'Conf/addition.php';
+        $addition = include CONF_PATH . 'extend' . CONF_EXT;
         if (empty($addition) || !is_array($addition)) {
             $addition = array();
         }
@@ -112,21 +112,8 @@ class Config extends AdminBase {
 
     //扩展配置
     public function extend() {
-        $action = input('get.action');
+        
         $db = db('ConfigField');
-        if ($action) {
-            if ($action == 'delete') {
-                $fid = input('get.fid', 0, 'intval');
-                if ($this->Config->extendDel($fid)) {
-                    sys_cache('Config', NULL);
-                    $this->success("扩展配置项删除成功！");
-                    return true;
-                } else {
-                    $error = $this->Config->getError();
-                    $this->error($error ? $error : "扩展配置项删除失败！");
-                }
-            }
-        }
         $extendList = $db->order(array('fid' => 'DESC'))->select();
         $this->assign('extendList', $extendList);
         $this->display();
@@ -135,22 +122,21 @@ class Config extends AdminBase {
     public function extendsave(){
         if (IS_POST) {
             $action = input('post.action');
-            if ($action) {
+
+            if ($action == 'add') {
                 //添加扩展项
-                if ($action == 'add') {
-                    $data = array(
-                        'fieldname' => trim(input('post.fieldname')),
-                        'type' => trim(input('post.type')),
-                        'setting' => input('post.setting'),
-                        config("TOKEN_NAME") => input('post.' . config("TOKEN_NAME")),
-                    );
-                    if ($this->Config->extendAdd($data) !== false) {
-                        $this->success('扩展配置项添加成功！',  url('Config/extend'));
-                        return true;
-                    } else {
-                        $error = $this->Config->getError();
-                        $this->error($error ? $error : '添加失败！');
-                    }
+                $data = array(
+                    'fieldname' => trim(input('post.fieldname')),
+                    'type' => trim(input('post.type')),
+                    'setting' => input('post.setting/a') ,
+                    config("TOKEN_NAME") => input('post.' . config("TOKEN_NAME")),
+                );
+                if ($this->Config->extendAdd($data) !== false) {
+                    $this->success('扩展配置项添加成功！',  url('Config/extend'));
+                    return true;
+                } else {
+                    $error = $this->Config->getError();
+                    $this->error($error ? $error : '添加失败！');
                 }
             } else {
                 //更新扩展项配置
@@ -161,7 +147,27 @@ class Config extends AdminBase {
                     $this->error($error ? $error : "配置更新失败！");
                 }
             }
+        }else{
+            $this->error("配置更新失败！");
         }
     }
 
+    public function extenddel(){
+        $action = input('action');
+        $db = db('ConfigField');
+        if ($action) {
+            if ($action == 'delete') {
+                $fid = input('fid', 0, 'intval');
+                if ($this->Config->extendDel($fid)) {
+                    sys_cache('Config', NULL);
+                    $this->success("扩展配置项删除成功！");
+                    return true;
+                } else {
+                    $error = $this->Config->getError();
+                    $this->error($error ? $error : "扩展配置项删除失败！");
+                }
+            }
+        }
+        $this->error("扩展配置项删除失败！");
+    }
 }
