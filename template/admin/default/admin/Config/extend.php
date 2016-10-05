@@ -60,7 +60,7 @@
                   <php>$setting = unserialize($vo['setting']);</php>
                   <div class="form-group">
                     <label class="col-md-2 control-label">
-                      {$setting.title} <a href="{:url('Config/extend',array('fid'=>$vo['fid'],'action'=>'delete'))}" class="J_ajax_del" title="删除该项配置" style="color:#F00">X</a><span class="gray"><br/>键名：{$vo.fieldname}</span>
+                      {$setting.title} <a href="{:url('admin/Config/extenddel',array('fid'=>$vo['fid'],'action'=>'delete'))}" class="J_ajax_del" title="删除该项配置" style="color:#F00">X</a><span class="gray"><br/>键名：{$vo.fieldname}</span>
                     </label>
                     <div class="col-md-6">
                       <switch name="vo.type">
