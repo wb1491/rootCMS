@@ -27,16 +27,29 @@ class Config extends Model {
             $this->error = '名称不能为空！';
             return false;
         }
+        //令牌验证
+        if (!$this->autoCheckToken($data)) {
+            $this->error = "表单令牌验证失败！";
+            return false;
+        }
+        //去除token
+        unset($data[Config("TOKEN_NAME")]);
         $data['fieldname'] = strtolower($data['fieldname']);
-        $db = model('ConfigField');
+        $db = db('ConfigField');
         //验证规则
-        $validate = array(
-            array('fieldname', 'require', '键名不能为空！', 1, 'regex', 3),
-            array('fieldname', '', '该键名已经存在！', 0, 'unique', 1),
-            array('type', 'require', '类型不能为空！', 1, 'regex', 3),
-            array('fieldname', '/^[a-z_0-9]+$/i', '键名只支持英文、数字、下划线！', 0, 'regex', 3),
-        );
-        $data = $db->validate($validate)->create($data);
+        $validate = new \think\Validate([
+            'fieldname'=> 'require',
+            'type'=> 'require',
+        ],[
+            'filedname.require' => "键名不能为空！",
+            'type.require' => "类型不能为空！", 
+        ]);
+        $result   = $validate->check($data);
+        if(!$result){
+            $this->error = $validate->getError();
+            return false;
+        }
+        //$data = $db->create($data);
         if ($data) {
             $data['createtime'] = time();
             //检查config表是否已经存在
@@ -62,15 +75,15 @@ class Config extends Model {
                 }
             }
             $data['setting'] = serialize($setting);
-            $id = $db->add($data);
+            $id = $db->insert($data,false,true);
             if ($id) {
                 //增加配置项
-                $this->add(array(
+                $this->insert([
                     'varname' => $data['fieldname'],
                     'info' => $setting['title'],
                     'groupid' => 2,
                     'value' => '',
-                ));
+                ],false,true);
                 return $id;
             } else {
                 $this->error = '添加失败！';
@@ -92,7 +105,8 @@ class Config extends Model {
             $this->error = '请指定需要删除的扩展配置项！';
             return false;
         }
-        $db = model('ConfigField');
+
+        $db = db('ConfigField');
         //扩展字段详情
         $info = $db->where(array('fid' => $fid))->find();
         if (empty($info)) {
@@ -121,7 +135,7 @@ class Config extends Model {
         }
         //令牌验证
         if (!$this->autoCheckToken($data)) {
-            $this->error = L('_TOKEN_ERROR_');
+            $this->error = "表单令牌验证失败！";
             return false;
         }
         //去除token
@@ -192,7 +206,7 @@ class Config extends Model {
             unset($data[Config('TOKEN_NAME')]);
         }
         //默认值
-        $data['default_group'] = $data['default_group'] ? $data['default_group'] : "Contents";
+        $data['default_group'] = $data['default_group'] ? $data['default_group'] : "content";
         $data['token_on'] = (int) $data['token_on'] ? true : false;
         $data['URL_MODEL'] = isset($data['URL_MODEL']) ? (int) $data['URL_MODEL'] : 0;
         $data['DEFAULT_TIMEZONE'] = $data['DEFAULT_TIMEZONE'] ? $data['DEFAULT_TIMEZONE'] : "PRC";
