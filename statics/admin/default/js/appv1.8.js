@@ -293,6 +293,8 @@ function loadURL(a, b){
             )
         },
         "success" : function (a){
+            //将滚动条滚动到最上面
+            $("html").animate({"scrollTop" : 0},"fast");
             if(a[0] === "{" && a[a.length-1] === "}"){
                 var obj = $.parseJSON(a),flg=false;
                 var content = obj.msg || (obj.status ? "操作成功！":"操作失败！");
