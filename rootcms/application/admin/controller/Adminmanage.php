@@ -80,4 +80,8 @@ class Adminmanage extends AdminBase {
         }
     }
 
+    public function chanavatar(){
+        
+        $this->display();
+    }
 }
