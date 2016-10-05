@@ -102,10 +102,10 @@ class Config extends AdminBase {
     public function additionsave(){
         if (IS_POST) {
             if ($this->Config->addition($_POST)) {
-                $this->success("修改成功，请及时更新缓存！");
+                $this->success("修改成功，请及时更新缓存！",url("admin/Config/addition"));
             } else {
                 $error = $this->Config->getError();
-                $this->error($error ? $error : "高级配置更新失败！");
+                $this->error($error ? $error : "高级配置更新失败！",url("admin/Config/addition"));
             }
         }
     }
@@ -132,7 +132,7 @@ class Config extends AdminBase {
                     config("TOKEN_NAME") => input('post.' . config("TOKEN_NAME")),
                 );
                 if ($this->Config->extendAdd($data) !== false) {
-                    $this->success('扩展配置项添加成功！',  url('Config/extend'));
+                    $this->success('扩展配置项添加成功！',  url('admin/Config/extend'));
                     return true;
                 } else {
                     $error = $this->Config->getError();
@@ -141,14 +141,14 @@ class Config extends AdminBase {
             } else {
                 //更新扩展项配置
                 if ($this->Config->saveExtendConfig($_POST)) {
-                    $this->success("更新成功！");
+                    $this->success("更新成功！",  url('admin/Config/extend'));
                 } else {
                     $error = $this->Config->getError();
-                    $this->error($error ? $error : "配置更新失败！");
+                    $this->error($error ? $error : "配置更新失败！",  url('admin/Config/extend'));
                 }
             }
         }else{
-            $this->error("配置更新失败！");
+            $this->error("配置更新失败！",  url('admin/Config/extend'));
         }
     }
 
@@ -160,14 +160,14 @@ class Config extends AdminBase {
                 $fid = input('fid', 0, 'intval');
                 if ($this->Config->extendDel($fid)) {
                     sys_cache('Config', NULL);
-                    $this->success("扩展配置项删除成功！");
-                    return true;
+                    $this->success("扩展配置项删除成功！",  url('admin/Config/extend'));
                 } else {
                     $error = $this->Config->getError();
                     $this->error($error ? $error : "扩展配置项删除失败！");
                 }
             }
+        }else{
+            $this->error("扩展配置项删除失败！");
         }
-        $this->error("扩展配置项删除失败！");
     }
 }
