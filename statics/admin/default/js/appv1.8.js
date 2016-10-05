@@ -861,13 +861,16 @@ $(document).on("click","form button[type='submit']",function(){
         "success":function(e){
             if(e[0] === "{" && e[e.length-1] === "}"){
                 var obj = $.parseJSON(e),flg=false;
+                var title = obj.status ? "成功":"失败";
                 var content = obj.msg || (obj.status ? "操作成功！":"操作失败！");
+                var color = obj.status ? "#739E73" : "#C46A69";
+                var icon  = obj.status ? "fa fa-check" : "fa fa-warning shake animated";
                 $.bigBox({
-                    title : "成功",
+                    title : title,
                     content : content,
-                    color : "#739E73",
+                    color : color,
                     timeout: 4000,
-                    icon : "fa fa-check",
+                    icon : icon,
                     number : "4"
                 });
             }
