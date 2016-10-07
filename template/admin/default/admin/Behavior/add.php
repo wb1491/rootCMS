@@ -1,7 +1,7 @@
-<Admintemplate file="Common/Nav"/>
-<div class="wrap">
-  <div class="h_a">行为规则使用说明</div>
-  <div class="prompt_text">
+<Admintemplate file="common/Nav"/>
+<div class="widget-body tab-content padding-10">
+  <h2>行为规则使用说明</h2>
+  <div class="alert alert-info">
     <p><b>规则定义格式1：</b> </p>
     <ul style="color:#00F">
       <li>格式： table:$table|field:$field|condition:$condition|rule:$rule[|cycle:$cycle|max:$max]</li>
@@ -35,43 +35,41 @@
       <li>max->单个周期内的最大执行次数（$cycle和$max必须同时定义，否则无效）</li>
     </ul>
   </div>
-  <form class="J_ajaxForm" action="{:url('Behavior/add')}" method="post">
-    <div class="h_a">基本属性</div>
-    <div class="table_full">
-      <table width="100%" class="table_form contentWrap">
-        <tbody>
-          <tr>
-            <th width="80">行为标识</th>
-            <td><input type="test" name="name" class="input" id="name">
-              <span class="gray">输入行为标识 英文字母</span></td>
-          </tr>
-          <tr>
-            <th>行为名称</th>
-            <td><input type="test" name="title" class="input" id="title">
-              <span class="gray">输入行为名称</span></td>
-          </tr>
-          <tr>
-            <th>行为类型</th>
-            <td><select name="type">
+  <form class="form-horizontal" action="{:url('admin/Behavior/add')}" method="post">
+    <h2>基本属性</h2>
+    <fieldset>
+          <div class="form-group">
+            <label class="col-md-2 control-label">行为标识</label>
+            <div class="col-md-6"><input type="test" name="name" class="form-control" id="name">
+              <span class="gray">输入行为标识 英文字母</span></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">行为名称</label>
+            <div class="col-md-6"><input type="test" name="title" class="form-control" id="title">
+              <span class="gray">输入行为名称</span></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">行为类型</label>
+            <div class="col-md-6"><select name="type" class="form-control">
 					<option value="1" selected>控制器</option>
                     <option value="2" >视图</option>
                     </select>
-                    <span class="gray">控制器表示是在程序逻辑中的，视图，表示是在模板渲染过程中的！</span></td>
-          </tr>
-          <tr>
-            <th>行为描述</th>
-            <td><textarea name="remark" rows="2" cols="20" id="remark" class="inputtext" style="height:100px;width:500px;"></textarea></td>
-          </tr>
-          <tr>
-            <th>行为规则</th>
-            <td><div class="cross" style="width:100%;">
+                    <span class="gray">控制器表示是在程序逻辑中的，视图，表示是在模板渲染过程中的！</span></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">行为描述</label>
+            <div class="col-md-6"><textarea name="remark" rows="4" cols="20" id="remark" class="form-control"></textarea></div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">行为规则</label>
+            <div class="col-md-6"><div class="cross" style="width:100%;">
                 <ul id="J_ul_list_addItem" class="J_ul_list_public" style="margin-left:0px;">
                   <li><span style="width:40px;">排序</span><span>规则</span></li>
                   <li><span style="width:40px;"><input type="test" name="listorder[0]" class="input" value="" style="width:35px;"></span><span style="width:500px;"><input type="test" name="rule[0]" class="input" value="" style="width:450px;"></span></li>
                 </ul>
               </div>
-              <a href="" class="link_add Js_ul_list_add" data-related="addItem">添加规则</a></td>
-          </tr>
+              <a href="" class="link_add Js_ul_list_add" data-related="addItem">添加规则</a></div>
+          </div>
         </tbody>
       </table>
     </div>
