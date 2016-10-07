@@ -22,7 +22,7 @@
     <p><b>规则字段解释：</b></p>
     <ul>
       <li>phpfile->直接调用已经定义好的行为文件。</li>
-      <li>module->行为所属模块，没有该参数时，自动定位到 shuipf\Common\Behavior 目录。</li>
+      <li>module->行为所属模块，没有该参数时，自动定位到 rootCMS\Applacation\Common\Behavior 目录。</li>
     </ul>
     <p><b>规则定义格式3：</b> </p>
     <ul style="color:#00F">
@@ -30,52 +30,59 @@
     </ul>
     <p><b>规则字段解释：</b></p>
     <ul>
-      <li>sql-><literal>需要执行的SQL语句，表前缀可以使用“shuipfcms_”代替。参数可以使用 {$parameter}的形式（该形式只对行为标签参数是为数组的有效，纯碎的参数使用{$self}）！</literal></li>
+      <li>sql-><literal>需要执行的SQL语句，表前缀可以使用“cms_”代替。参数可以使用 {$parameter}的形式（该形式只对行为标签参数是为数组的有效，纯碎的参数使用{$self}）！</literal></li>
       <li>cycle->执行周期，单位（小时），表示$cycle小时内最多执行$max次 </li>
       <li>max->单个周期内的最大执行次数（$cycle和$max必须同时定义，否则无效）</li>
     </ul>
   </div>
   <form class="form-horizontal" action="{:url('admin/Behavior/add')}" method="post">
-    <h2>基本属性</h2>
+    <header>基本属性</header>
     <fieldset>
-          <div class="form-group">
-            <label class="col-md-2 control-label">行为标识</label>
-            <div class="col-md-6"><input type="test" name="name" class="form-control" id="name">
-              <span class="gray">输入行为标识 英文字母</span></div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">行为标识</label>
+        <div class="col-md-6"><input type="test" name="name" class="form-control" id="name"/></div>
+        <div class="col-md-4"><span class="gray">输入行为标识 英文字母</span></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">行为名称</label>
+        <div class="col-md-6"><input type="test" name="title" class="form-control" id="title"/></div>
+        <div class="col-md-4"><span class="gray">输入行为名称</span></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">行为类型</label>
+        <div class="col-md-6"><select name="type" class="form-control">
+            <option value="1" selected>控制器</option>
+            <option value="2" >视图</option>
+          </select></div>
+        <div class="col-md-4"><span class="gray">控制器表示是在程序逻辑中的，视图，表示是在模板渲染过程中的！</span></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">行为描述</label>
+        <div class="col-md-6"><textarea name="remark" rows="4" cols="20" id="remark" class="form-control"></textarea></div>
+        <div class="col-md-4"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">行为规则</label>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-2 paddingfixright">
+              <input type="test" name="listorder[0]" placeholder="排序" class="form-control" value=""/>
+            </div>
+            <div class="col-md-10 paddingfixleft">
+              <input type="test" name="rule[0]" placeholder="规则" class="form-control" value=""/>
+            </div>
           </div>
-          <div class="form-group">
-            <label class="col-md-2 control-label">行为名称</label>
-            <div class="col-md-6"><input type="test" name="title" class="form-control" id="title">
-              <span class="gray">输入行为名称</span></div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-2 control-label">行为类型</label>
-            <div class="col-md-6"><select name="type" class="form-control">
-					<option value="1" selected>控制器</option>
-                    <option value="2" >视图</option>
-                    </select>
-                    <span class="gray">控制器表示是在程序逻辑中的，视图，表示是在模板渲染过程中的！</span></div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-2 control-label">行为描述</label>
-            <div class="col-md-6"><textarea name="remark" rows="4" cols="20" id="remark" class="form-control"></textarea></div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-2 control-label">行为规则</label>
-            <div class="col-md-6"><div class="cross" style="width:100%;">
-                <ul id="J_ul_list_addItem" class="J_ul_list_public" style="margin-left:0px;">
-                  <li><span style="width:40px;">排序</span><span>规则</span></li>
-                  <li><span style="width:40px;"><input type="test" name="listorder[0]" class="input" value="" style="width:35px;"></span><span style="width:500px;"><input type="test" name="rule[0]" class="input" value="" style="width:450px;"></span></li>
-                </ul>
-              </div>
-              <a href="" class="link_add Js_ul_list_add" data-related="addItem">添加规则</a></div>
-          </div>
-        </tbody>
-      </table>
-    </div>
-    <div class="btn_wrap">
-      <div class="btn_wrap_pd">
-        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+        </div>
+        <div class="col-md-4">
+          <a href="" class="btn btn-primary link_add Js_ul_list_add" data-related="addItem">添加规则</a>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-actions">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <button class="btn btn_primary mr10 J_ajax_submit_btn" type="submit">添加</button>
+        </div>
       </div>
     </div>
   </form>
