@@ -128,3 +128,8 @@ and open the template in the editor.
 .mb10 {
     margin-bottom: 10px !important;
 }
+.alert-info ul li{
+    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+}
