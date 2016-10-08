@@ -19,11 +19,11 @@
       <span class="mr20"> 行为标识：
         <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$keyword}" placeholder="请输入标识关键字...">
         <button class="btn">搜索</button>
-        </span>
+      </span>
     </form>
   </div>
   <div class="table-responsive">
-    <table class="table table-striped table-bordered dataTable no-footer">
+    <table class="table table-striped table-bordered dataTable">
       <colgroup>
         <col width="50">
         <col width="200">
@@ -56,8 +56,8 @@
         </tr>
       </volist>
     </table>
-    <div class="dt-toolbar-footer">
-       {$Page}
-    </div>
+  </div>
+  <div class="dt-toolbar-footer">
+    {$Page}
   </div>
 </div>
