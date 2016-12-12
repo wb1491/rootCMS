@@ -71,7 +71,7 @@ class Behavior extends AdminBase {
                 $this->error($this->behavior->getError());
             }
         } else {
-            $id = input('get.id', 0, 'intval');
+            $id = input('id', 0, 'intval');
             if (empty($id)) {
                 $this->error('请选择需要编辑的行为！');
             }
@@ -89,7 +89,7 @@ class Behavior extends AdminBase {
 
     //删除行为
     public function delete() {
-        $id = input('get.id', 0, 'intval');
+        $id = input('id', 0, 'intval');
         if (empty($id)) {
             $this->error('请指定需要删除的行为！');
         }
@@ -129,7 +129,7 @@ class Behavior extends AdminBase {
 
     //状态转换
     public function status() {
-        $id = input('get.id', 0, 'intval');
+        $id = input('id', 0, 'intval');
         if (empty($id)) {
             $this->error('请指定需要状态转换的行为！');
         }

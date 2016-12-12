@@ -82,7 +82,7 @@ class FileManager extends AdminBase {
      *          _CUR_ 表示但前目录 
      *          _DIR_ 表示所处目录 
      *          _FILE_ 所处文件
-     *         {: url('','param')} 来处表示此处为U函数
+     *         {:url('','param')} 来处表示此处为U函数
      * @var Array 
      */
     public $listButton = array(

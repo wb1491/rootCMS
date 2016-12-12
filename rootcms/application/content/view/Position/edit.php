@@ -4,7 +4,7 @@
 <div class="wrap J_check_wrap">
   <Admintemplate file="Common/Nav"/>
   <div class="h_a">推荐位修改</div>
-  <form name="myform" action="{: url("edit")}" method="post" class="J_ajaxForm">
+  <form name="myform" action="{:url("edit")}" method="post" class="J_ajaxForm">
   <div class="table_full"> 
   <table width="100%" class="table_form contentWrap">
         <tr>

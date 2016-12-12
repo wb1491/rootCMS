@@ -12,7 +12,7 @@
 </style>
 <div class="wrap">
   <div class="h_a">搜索</div>
-  <form name="searchform" action="{: url("Content/Content/public_relationlist")}" method="post">
+  <form name="searchform" action="{:url("Content/Content/public_relationlist")}" method="post">
     <div class="search_type cc mb10">
       <div class="mb10"> 
         <span class="mr20">

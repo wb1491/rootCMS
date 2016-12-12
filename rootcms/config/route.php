@@ -44,13 +44,20 @@ return [
     "admin/extendcfg/[:menuid]"  => ['admin/Config/extend',[],['menuid'=>"\d+"]],
     "admin/additionsave$"  => ['admin/Config/additionsave',[],[]],
     "admin/extendsave$"  => ['admin/Config/extendsave',[],[]],
-    "admin/behavior"  => ['admin/Behavior/index',[],[]],
-    "admin/behaviorlogs$"  => ['admin/Behavior/logs',[],[]],
-    "admin/behavioradd$"  => ['admin/Behavior/add',[],[]],
+    "admin/extenddel/:fid/:action"  => ['admin/Config/extenddel',[],["fid"=>"\d+","action"=>'\w+',]],
+    "admin/behavior/[:menuid]/[:page]"  => ['admin/Behavior/index',[],['menuid'=>"\d+",'page'=>"\d+"]],
+    "admin/behaviorlogs"  => ['admin/Behavior/logs',[],[]],
+    "admin/behavioradd"  => ['admin/Behavior/add',[],[]],
+    "admin/behavioredit/:id"  => ['admin/Behavior/edit',[],['id'=>"\d+"]],
+    "admin/behaviorstatus/:id"  => ['admin/Behavior/status',[],['id'=>"\d+"]],
     
     "admin/menugl/[:menuid]"  => ['admin/Menu/index',[],['menuid'=>"\d+"]],
     "admin/menuadd/[:menuid]" => ['admin/Menu/add',[],['menuid'=>"\d+"]],
-        
+    
+    "admin/myinfo$" => ["admin/Adminmanage/myinfo",[],[]],
+    "admin/changepwd$" => ["admin/Adminmanage/changepwd",[],[]],
+    "admin/changeavr$" => ["admin/Adminmanage/changeavr",[],[]],
+
     //api相关
     "api/checkcode/:type/:code_len/:font_size/:width/:height" => [
         "api/Checkcode/index", [],

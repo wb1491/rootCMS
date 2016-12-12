@@ -52,7 +52,7 @@ body fieldset legend {
       <li><a href="{$category['url']}" target="_blank">点击访问</a></li>
     </ul>
   </div>
-  <form name="myform" id="myform" action="{: url("add")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
+  <form name="myform" id="myform" action="{:url("add")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
     <div class="col-auto">
       <div class="h_a">单页内容</div>
     <div class="table_full">

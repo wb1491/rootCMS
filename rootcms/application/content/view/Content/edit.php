@@ -46,7 +46,7 @@ body fieldset legend {
 </head>
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
-  <form name="myform" id="myform" action="{: url("Content/edit")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
+  <form name="myform" id="myform" action="{:url("Content/edit")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
   <div class="col-right">
     <div class="table_full">
       <table width="100%">
@@ -236,7 +236,7 @@ $(function () {
 										{
 											name: '添加一篇新文章？',
 											callback:function(){
-												window.location.href = "{: url('Content/add',array('catid'=>$catid))}";
+												window.location.href = "{:url('Content/add',array('catid'=>$catid))}";
 												return true;
 											},
 											focus: true
@@ -261,7 +261,7 @@ $(function () {
 });
 //锁定续期
 function public_lock_renewal(){
-    $.get("{: url('Content/public_lock_renewal',array('catid'=>$catid,'id'=>$id))}");
+    $.get("{:url('Content/public_lock_renewal',array('catid'=>$catid,'id'=>$id))}");
 }
 </script>
 </body>

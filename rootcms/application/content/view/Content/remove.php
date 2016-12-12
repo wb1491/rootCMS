@@ -8,7 +8,7 @@
       <li>信息移动只支持同模型之间进行移动，不支持夸模型移动！ </li>
     </ol>
   </div>
-  <form class="J_ajaxForm" action="{: url('Content/remove','catid='.$catid)}" method="post">
+  <form class="J_ajaxForm" action="{:url('Content/remove','catid='.$catid)}" method="post">
     <div class="pop_cont pop_table" style="overflow-x:hidden;">
       <table width="100%">
         <colgroup>

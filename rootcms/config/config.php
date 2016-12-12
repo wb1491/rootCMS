@@ -11,11 +11,6 @@
 // 异常错误报错级别,
 error_reporting(E_ERROR | E_PARSE );
 
-$extend = array(); 
-//检查是否存在扩展配置文件
-if(file_exists(CONF_PATH."extend.php")){
-    $extend = require_once CONF_PATH.'extend.php';
-}
 /**
  * 项目公共配置文件
  * 该文件请不要修改，如果要覆盖惯例配置的值，可在应用配置文件中设定和惯例不符的配置项
@@ -36,7 +31,7 @@ $conf = [
     // 注册的根命名空间
     'root_namespace'         => [],
     // 扩展配置文件
-    'extra_config_list'      => ['route','database', 'extend', 'version'],
+    'extra_config_list'      => ['route','database', 'version'],
     // 扩展函数文件
     'extra_file_list'        => [THINK_PATH . 'helper' . EXT],
     // 默认输出类型
@@ -148,6 +143,7 @@ $conf = [
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [],
+    
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -164,4 +160,9 @@ $conf = [
     
 ];
 
+$extend = array(); 
+//检查是否存在扩展配置文件
+if(file_exists(CONF_PATH."extend.php")){
+    $extend = require_once CONF_PATH.'extend.php';
+}
 return empty($extend)? $conf : array_merge($conf,$extend);

@@ -4,7 +4,7 @@
 <div class="wrap J_check_wrap">
   <Admintemplate file="Common/Nav"/>
   <div class="h_a">字段属性</div>
-  <form name="myform" class="J_ajaxForm" action="{: url("Field/edit")}" method="post">
+  <form name="myform" class="J_ajaxForm" action="{:url("Field/edit")}" method="post">
   <div class="table_full">
   <table width="100%" class="table_form">
       <tr>
@@ -155,7 +155,7 @@ function field_setting(fieldtype) {
         }
     });
 
-    $.getJSON("{: url('Field/public_field_setting')}",{fieldtype:fieldtype}, function (data) {
+    $.getJSON("{:url('Field/public_field_setting')}",{fieldtype:fieldtype}, function (data) {
         if (data.field_basic_table == '1') {
             $('#field_basic_table0').attr("disabled", false);
             $('#field_basic_table1').attr("disabled", false);
@@ -208,7 +208,7 @@ function init_field_setting(fieldtype) {
         }
     });
 
-    $.getJSON("{: url('Field/public_field_setting')}",{fieldtype:fieldtype}, function (data) {
+    $.getJSON("{:url('Field/public_field_setting')}",{fieldtype:fieldtype}, function (data) {
         if (data.field_basic_table == '1') {
             $('#field_basic_table0').attr("disabled", false);
             $('#field_basic_table1').attr("disabled", false);

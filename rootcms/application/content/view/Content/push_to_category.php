@@ -10,11 +10,11 @@
 <div class="wrap_pop">
   <div class="nav">
     <ul class="cc">
-      <li><a href="{: url('Content/Content/push',array('action'=>'position_list','modelid'=>$modelid,'catid'=>$catid,'id'=>$id))}">推送到推荐位</a></li>
-      <li class="current"><a href="{: url('Content/Content/push',array('action'=>'push_to_category','modelid'=>$modelid,'catid'=>$catid,'id'=>$id))}">推送到其他栏目</a></li>
+      <li><a href="{:url('Content/Content/push',array('action'=>'position_list','modelid'=>$modelid,'catid'=>$catid,'id'=>$id))}">推送到推荐位</a></li>
+      <li class="current"><a href="{:url('Content/Content/push',array('action'=>'push_to_category','modelid'=>$modelid,'catid'=>$catid,'id'=>$id))}">推送到其他栏目</a></li>
     </ul>
   </div>
-  <form class="J_ajaxForm" action="{: url('Content/push','action=push_to_category')}" method="post">
+  <form class="J_ajaxForm" action="{:url('Content/push','action=push_to_category')}" method="post">
     <input type="hidden" name="modelid" value="{$modelid}">
     <input type="hidden" name="catid" value="{$catid}">
     <input type='hidden' name="id" value='{$id}'>

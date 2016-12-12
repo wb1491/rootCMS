@@ -74,7 +74,7 @@ class Content {
             $this->modelid = $catid;
         }
         if($this->modelid){
-            $this->db = \app\content\model\Content::getInstance($this->modelid);
+            $this->db = new \app\content\model\Content(['catid'=>$catid],  $this->modelid);
             return $this->db;
         }
     }
@@ -117,8 +117,7 @@ class Content {
         $catid = $data['catid'];
         $getLastSql = array();
         
-        $db = $this->set_modelid($catid);
-
+        $db = new \app\content\model\Content(["catid"=>$catid]);
         $this->where($data);
         //判断是否启用分页，如果没启用分页则显示指定条数的内容
         if (!isset($data['limit'])) {
@@ -129,7 +128,7 @@ class Content {
             $data['order'] = array('updatetime' => 'DESC', 'id' => 'DESC');
         }
         $moreinfo = isset($data['moreinfo']) && $data['moreinfo'] ? true : false;
-        $db->where($this->where)->limit($data['limit'])->order($data['order']);
+        $db = $db->relation($moreinfo)->where($this->where)->limit($data['limit'])->order($data['order']);
         $dataList = $db->select();
         $getLastSql[] = $db->getLastSql();
         //是否经过ContentOutput处理

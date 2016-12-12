@@ -46,7 +46,7 @@ body fieldset legend {
 </head>
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
-  <form name="myform" id="myform" action="{: url("add")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
+  <form name="myform" id="myform" action="{:url("add")}" method="post" class="J_ajaxForms" enctype="multipart/form-data">
   <div class="col-right">
     <div class="table_full">
       <table width="100%">

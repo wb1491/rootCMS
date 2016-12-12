@@ -4,11 +4,11 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="180">
-    <iframe name="left" id="iframe_categorys" src="{: url('Content/public_categorys')}" style="height: 100%; width: 180px;"  frameborder="0" scrolling="auto"></iframe></td>
+    <iframe name="left" id="iframe_categorys" src="{:url('Content/public_categorys')}" style="height: 100%; width: 180px;"  frameborder="0" scrolling="auto"></iframe></td>
     <td width="3" bgcolor="#CCCCCC">
     </td>
     <td>
-    <iframe name="right" id="iframe_categorys_list" src="{: url('admin/Main/index')}"   style="height: 100%; width:100%;border:none;"   frameborder="0" scrolling="auto"></iframe></td>
+    <iframe name="right" id="iframe_categorys_list" src="{:url('admin/Main/index')}"   style="height: 100%; width:100%;border:none;"   frameborder="0" scrolling="auto"></iframe></td>
   </tr>
 </table>
 <script type="text/javascript">

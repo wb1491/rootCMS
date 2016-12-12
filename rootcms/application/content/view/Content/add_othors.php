@@ -8,7 +8,7 @@
 .list-dot-othors li{float:none; width:auto}
 </style>
 <div>
-  <form class="J_ajaxForm" action="{: url('Content/push','action=push_to_category')}" method="post">
+  <form class="J_ajaxForm" action="{:url('Content/push','action=push_to_category')}" method="post">
     <input type="hidden" name="modelid" value="{$modelid}">
     <input type="hidden" name="catid" value="{$catid}">
     <input type='hidden' name="id" value='{$id}'>

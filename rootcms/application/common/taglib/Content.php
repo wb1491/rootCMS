@@ -179,7 +179,7 @@ class Content extends TagLib {
         }
 
         $parsestr = '<?php ';
-        $parsestr .= ' $_pre_r = \app\content\model\Content::getInstance(getCategory(' . $tag['catid'] . ',"modelid"))->where(array("catid"=>' . $tag['catid'] . ',"status"=>99,"id"=>array("LT",' . $tag['id'] . ')))->order(array("id" => "DESC"))->field("id,title,url")->find(); ';
+        $parsestr .= ' $_pre_r = \app\content\model\Content::getInstance(getCategory(' . $tag['catid'] . ',"modelid"))->where(array("catid"=>' . $tag['catid'] . ',"status"=>99,"id"=>array("LT",' . $tag['id'] . ')))->order(array("id" => "DESC"))->field("id,catid,title,url")->find(); ';
         if ($field) {
             $parsestr .= ' echo $_pre_r?$_pre_r["' . $field . '"]:""';
         } else {
@@ -217,7 +217,7 @@ class Content extends TagLib {
         }
 
         $parsestr = '<?php ';
-        $parsestr .= ' $_pre_n = \app\content\model\Content::getInstance(getCategory(' . $tag['catid'] . ',"modelid"))->where(array("catid"=>' . $tag['catid'] . ',"status"=>99,"id"=>array("GT",' . $tag['id'] . ')))->order(array("id" => "ASC"))->field("id,title,url")->find(); ';
+        $parsestr .= ' $_pre_n = \app\content\model\Content::getInstance(getCategory(' . $tag['catid'] . ',"modelid"))->where(array("catid"=>' . $tag['catid'] . ',"status"=>99,"id"=>array("GT",' . $tag['id'] . ')))->order(array("id" => "ASC"))->field("id,catid,title,url")->find(); ';
         if ($field) {
             $parsestr .= ' echo $_pre_n?$_pre_n["' . $field . '"]:""';
         } else {

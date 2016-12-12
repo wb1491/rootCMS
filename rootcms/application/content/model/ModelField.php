@@ -45,7 +45,7 @@ class ModelField extends Model {
     //初始化
     protected function _initialize() {
         parent::_initialize();
-        $this->fieldPath = APP_PATH . 'Content/Fields/';
+        $this->fieldPath = APP_PATH . 'content/fields/';
     }
 
     //返回字段存放路径
@@ -62,7 +62,7 @@ class ModelField extends Model {
         if (empty($fieldName)) {
             return true;
         }
-        if ($this->where(array('modelid' => $this->modelid, 'field' => $fieldName))->count()) {
+        if ($this->where('modelid',$this->modelid)->where('field',$fieldName)->count()) {
             return false;
         }
         return true;
@@ -84,7 +84,7 @@ class ModelField extends Model {
      * @return type
      */
     public function getModelField($modelid) {
-        return $this->where(array("modelid" => $modelid))->order(array("listorder" => "ASC"))->select();
+        return $this->where("modelid",$modelid)->order(array("listorder" => "ASC"))->select();
     }
 
     /**
@@ -97,7 +97,7 @@ class ModelField extends Model {
     public function isAddField($field, $field_type, $modelid) {
         //判断是否唯一字段
         if (in_array($field, $this->unique_fields)) {
-            $f_datas = $this->where(array("modelid" => $modelid))->column("field,field,formtype,name");
+            $f_datas = $this->where("modelid", $modelid)->column("field,field,formtype,name");
             return empty($f_datas[$field]) ? true : false;
         }
         //不显示的字段类型（字段类型）
@@ -157,7 +157,7 @@ class ModelField extends Model {
      */
     protected function getModelTableName($modelid, $issystem = 1) {
         //读取模型配置 以后优化缓存形式
-        $model_cache = cache("Model");
+        $model_cache = sys_cache("Model");
         //表名获取
         $model_table = $model_cache[$modelid]['tablename'];
         //完整表名获取 判断主表 还是副表
@@ -235,7 +235,7 @@ class ModelField extends Model {
             if ($this->addFieldSql($field_type, $field)) {
                 $fieldid = $this->add($data);
                 //清理缓存
-                cache('ModelField', NULL);
+                sys_cache('ModelField', NULL);
                 if ($fieldid) {
                     return $fieldid;
                 } else {
@@ -316,7 +316,7 @@ class ModelField extends Model {
             $data['pattern'] = $pattern;
             if (false !== $this->where(array("fieldid" => $fieldid))->save($data)) {
                 //清理缓存
-                cache('ModelField', NULL);
+                sys_cache('ModelField', NULL);
                 //如果字段名变更
                 if ($data['field'] && $info['field']) {
                     //检查字段是否存在，只有当字段名改变才检测

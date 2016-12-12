@@ -10,7 +10,7 @@
   <div class="h_a">刷新任务</div>
   <div class="table_full">
   <table width="100%" cellspacing="0">
-      <form action="{: url("Content/Createhtml/category")}" method="post" name="myform">
+      <form action="{:url("Content/Createhtml/category")}" method="post" name="myform">
         <input type="hidden" name="dosubmit" value="1">
         <input type="hidden" name="type" value="lastinput">
         <thead>

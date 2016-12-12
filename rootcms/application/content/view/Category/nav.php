@@ -3,18 +3,18 @@
   <if condition="$appinfo['action'] eq 'index' ">
   <a href='javascript:;' class="on"><em>管理栏目</em></a><span>|</span>
   <else />
-  <a href='{: url("Category/index")}'><em>管理栏目</em></a><span>|</span>
+  <a href='{:url("Category/index")}'><em>管理栏目</em></a><span>|</span>
   </if>
   <if condition="$appinfo['action'] eq 'add' ">
   <a href='javascript:;' class="on" ><em>添加栏目</em></a><span>|</span>
   <else />
-  <a href='{: url("Category/add")}' ><em>添加栏目</em></a><span>|</span>
+  <a href='{:url("Category/add")}' ><em>添加栏目</em></a><span>|</span>
   </if>
   <if condition="$appinfo['action'] eq 'wadd' ">
   <a href='javascript:;' class="on" ><em>添加外部链接</em></a><span>|</span>
   <else />
-  <a href='{: url("Category/wadd",array("type"=>2))}' ><em>添加外部链接</em></a><span>|</span>
+  <a href='{:url("Category/wadd",array("type"=>2))}' ><em>添加外部链接</em></a><span>|</span>
   </if>
-  <a href='{: url("Category/public_cache")}' ><em>更新栏目缓存</em></a>
+  <a href='{:url("Category/public_cache")}' ><em>更新栏目缓存</em></a>
   </div>
 </div>

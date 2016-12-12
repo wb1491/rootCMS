@@ -45,11 +45,11 @@ class VideoController extends FileManager {
                 //"delete" => "<a herf='javascript:void(0);' class='btn' onclick=\"javascript:flashupload('upload_file', '上传数据文件', '{$this->fileCount},{$fieext},0')\" title=\"上传数据文件到当前目录下\"><span class=\"upload\"></span>上传数据</a>",
             ),
             "dir" => array(
-                "del" => "<a href=\"javascript:confirmurl('{: url('delete','dir=_DIR_')}','确认要删除此目录吗？')\"  class=\"btn\" ><span class=\"del\"></span>删除</a>"
+                "del" => "<a href=\"javascript:confirmurl('{:url('delete','dir=_DIR_')}','确认要删除此目录吗？')\"  class=\"btn\" ><span class=\"del\"></span>删除</a>"
             ),
             "file" => array(
                 "import" => "<a href=\"javascript:videoimport('_DIR_')\"  class=\"btn\" ><span class=\"impload\"></span>导入</a>",
-                //"del" => "<a href=\"javascript:confirmurl('{: url('delete','dir=_FILE_')}','确认要删除此文件吗？')\"  class=\"btn\" ><span class=\"del\"></span>删除</a>",
+                //"del" => "<a href=\"javascript:confirmurl('{:url('delete','dir=_FILE_')}','确认要删除此文件吗？')\"  class=\"btn\" ><span class=\"del\"></span>删除</a>",
             )        
         );
         $this->setListButton($listButton);

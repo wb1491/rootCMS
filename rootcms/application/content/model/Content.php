@@ -26,35 +26,28 @@ class Content extends Model {
      * @return obj
      */
     static public function getInstance($modelid) {
-        echo "\nContentModel getInstance start: modelid=$modelid\n";
-        if (!isset(self::$_instance[$modelid]) || is_null(self::$_instance[$modelid])) {
-            //内容模型缓存
-            $modelCache = sys_cache("Model");
-            if (empty($modelCache[$modelid])) {
-                return false;
-            }
-            $tableName = $modelCache[$modelid]['tablename'];
-            self::$_instance[$modelid] = new Content($tableName,$modelid);
-            //设置模型id
-            //self::$_instance[$modelid]->modelid = $modelid;
+        //内容模型缓存
+        $modelCache = sys_cache("Model");
+        if (empty($modelCache[$modelid])) {
+            return false;
         }
-        
-        echo "\nContentModel getInstance End ==》name:".self::$_instance[$modelid]->name." \n";
-        return self::$_instance[$modelid];
+        $tableName = $modelCache[$modelid]['tablename'];
+        return new Content($tableName,$modelid);
     }
     
     public function __construct($name="",$modelid=0) {
-        echo "\nContentModel __construct start: name=$name , modelid=$modelid\n";
-        if(is_array($name)){
-            print_r($name);
-        }
+        $data = [];
         if(!empty($name) && !is_array($name)){
             $this->name = $name;
-        }elseif(is_array ($name)){
+            if(empty($modelid)){
+                $modelid = getModelIdByName($name);
+            }
+        }elseif(is_array($name)|| is_object($name)){
             $data = $name;
             if( isset($data['catid']) && $data['catid']>0 ){
                 $modelid = getCategory($data['catid'],'modelid');
             }
+            $this->data = $data;
         }
         if(!empty($modelid)){
             $this->modelid = $modelid;
@@ -69,51 +62,31 @@ class Content extends Model {
             //根据模型id重新赋值name
             $this->name = $modelCache[$modelid]['tablename'];
         }
-        
+        $this->connection = config("database");
         $this->table = config("database.prefix").$this->name;
-        $this->pk = $this->getPk();
-        parent::__construct([]);
-        echo "\nContentModel __construct End\n";
+        $this->class = get_class($this);
+        $this->db()->name($this->name);
+        $this->db()->table($this->table);
+        $this->pk = $this->getPk($this->name);
     }
     
     /**
      * 进行关联查询
      * @access public
-     * @param mixed $name 关联名称
+     * @param mixed $isrel 关联名称
      * @return Model
      */
-    public function relation($name="") {
-        //关联关系
-        $this->relationShipsDefine($this->name);
-        return parent::relation($name);
-        //$this->relation()->hasOne($this->_link[$this->getRelationName($this->name)], "id");
-        //return $this;
-        
-    }
-
-    /**
-     * 关联定义
-     * @param array $tableName 关联定义条件。
-     * 如果是数组，直接定义配置好的关联条件，如果是字符串，则当作表名进行定义一对一关联条件！
-     */
-    public function relationShipsDefine($tableName) {
-        if (is_object($tableName)) {
-            $this->_link = $tableName;
-        } else {            
-            $extdata = new ContentData([
-                'modelname'=>$tableName . "_data",
-                "foreignKey" =>"id",
-            ]);
-            
-            //进行内容表关联定义
-            $this->_link = array(
-                //主表 附表关联
-                $this->getRelationName($tableName) => $extdata,
-            );
+    public function relation($isrel=false) {
+        if($isrel){
+            //关联关系
+            if( is_null($this->relation) ){
+                $this->relation = new ContentData($this->name,  $this->modelid);
+            }
+            parent::relation($this->getRelationName());
         }
-        return $this->_link;
+        return $this;
     }
-
+    
     /**
      * 获取关联定义名称
      * @param type $tableName 表名
@@ -123,9 +96,26 @@ class Content extends Model {
         if (empty($tableName)) {
             $tableName = $this->name;
         }
-        return ucwords($tableName) . 'Data';
+        return $tableName . '_data';
     }
 
+    /**
+     * 查询当前模型的关联数据
+     * @access public
+     * @param string|array $relations 关联名
+     * @return $this
+     */
+    public function relationQuery($relations){
+        if (is_string($relations)) {
+            $relations = explode(',', $relations);
+        }
+        $this->relation(true);
+        foreach ($relations as $relation) {
+            $this->data[$relation] = $this->relation->getRelation($this->data['id']);
+        }
+        return $this;
+    }
+    
     /**
      * 对通过连表查询的数据进行合并处理
      * @param type $data
@@ -139,16 +129,7 @@ class Content extends Model {
         }
         return $data;
     }
-    /**
-     * 获取关联数据
-     * @return type
-     */
-    public function extendData(){
-        $tbname = $this->getRelationName();
-        $model = $this->_link[$tbname];
-        return $this->relation()->hasOne($model, "id");
-    }
-
+    
     /**
      * 创建数据对象 但不保存到数据库
      * @access public
@@ -287,7 +268,7 @@ class Content extends Model {
      * @return type
      */
     public function locking($catid, $id, $userid = 0) {
-        $db = M("Locking");
+        $db = db("Locking");
         $time = time();
         //锁定有效时间
         $Lock_the_effective_time = 300;
@@ -324,7 +305,7 @@ class Content extends Model {
         //缓存生成路径
         $cachemodepath = RUNTIME_PATH;
         foreach ($classtypes as $classtype) {
-            $content_cache_data = file_get_contents($fields_path . "content_$classtype.class.php");
+            $content_cache_data = file_get_contents($fields_path . "content_$classtype.php");
             $cache_data = '';
             //循环字段列表，把各个字段的 form.inc.php 文件合并到 缓存 content_form.class.php 文件
             foreach ($fields as $field => $fieldvalue) {
@@ -337,9 +318,9 @@ class Content extends Model {
             }
             $content_cache_data = str_replace('##{字段处理函数}##', $cache_data, $content_cache_data);
             //写入缓存
-            file_put_contents($cachemodepath . 'content_' . $classtype . '.class.php', $content_cache_data);
+            file_put_contents($cachemodepath . 'content_' . $classtype . '.php', $content_cache_data);
             //设置权限
-            chmod($cachemodepath . 'content_' . $classtype . '.class.php', 0777);
+            chmod($cachemodepath . 'content_' . $classtype . '.php', 0777);
             unset($cache_data);
         }
     }

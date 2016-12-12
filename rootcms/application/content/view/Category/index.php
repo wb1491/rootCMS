@@ -5,10 +5,10 @@
   <Admintemplate file="Common/Nav"/>
   <div class="h_a">温馨提示</div>
   <div class="prompt_text">
-    <p>1、请在添加、修改栏目全部完成后，<a href="{: url("Category/public_cache")}">更新栏目缓存</a>，否则可能出现未知错误！</p>
+    <p>1、请在添加、修改栏目全部完成后，<a href="{:url("Category/public_cache")}">更新栏目缓存</a>，否则可能出现未知错误！</p>
     <p>2、栏目<font color="blue">ID</font>为<font color="blue">蓝色</font>才可以添加内容。可以使用“终极属性转换”进行转换！</p>
   </div>
-  <form name="myform" action="{: url("Category/index")}" method="post" class="J_ajaxForm">
+  <form name="myform" action="{:url("Category/index")}" method="post" class="J_ajaxForm">
   <div class="table_list">
     <table width="100%">
         <colgroup>

@@ -3,7 +3,7 @@
 <body class="body_none" style="width:600px;">
 <div class="wrap_pop ">
   <div class="h_a">信息管理</div>
-  <form name="myform" action="{: url("item_manage")}" method="post" class="J_ajaxForm">
+  <form name="myform" action="{:url("item_manage")}" method="post" class="J_ajaxForm">
     <input type="hidden" name="posid" value="{$posid}"/>
     <input type="hidden" name="modelid" value="{$modelid}"/>
     <input type="hidden" name="id" value="{$id}"/>

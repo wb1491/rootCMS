@@ -10,7 +10,7 @@
   <div class="h_a">刷新任务</div>
   <div class="table_full">
   <table width="100%" cellspacing="0">
-      <form action="{: url("Content/Createhtml/index")}" method="post" name="myform">
+      <form action="{:url("Content/Createhtml/index")}" method="post" name="myform">
         <tbody  height="200" class="nHover td-line">
           <tr>
             <th>重新生成首页

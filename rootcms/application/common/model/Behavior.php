@@ -45,7 +45,7 @@ class Behavior extends \think\Model {
             return false;
         }
         //查询对应行为的所属规则
-        $ruleList = model('BehaviorRule')->where(array('behaviorid' => $id))->order(array('listorder' => 'ASC', 'ruleid' => 'ASC'))->select();
+        $ruleList = db('BehaviorRule')->where(array('behaviorid' => $id))->order(array('listorder' => 'ASC', 'ruleid' => 'ASC'))->select();
         if (empty($ruleList)) {
             $ruleList = array();
         }

@@ -11,7 +11,7 @@
       </literal>
   </div>
   <div class="h_a">规则内容</div>
-  <form action="{: url("Urlrule/add")}" method="post" name="myform" class="J_ajaxForm">
+  <form action="{:url("Urlrule/add")}" method="post" name="myform" class="J_ajaxForm">
     <div class="table_full">
       <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
         <tr>

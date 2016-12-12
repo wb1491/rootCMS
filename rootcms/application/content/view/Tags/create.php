@@ -8,7 +8,7 @@
     <p>数据操作会清空原有数据，进行从新建立，此操作不可恢复！</p>
   </div>
   <div class="h_a">数据重建</div>
-  <form action="{: url('create',array('delete'=>'1'))}" method="post">
+  <form action="{:url('create',array('delete'=>'1'))}" method="post">
     <div class="table_full">
       <table cellpadding="2" cellspacing="1" class="table_form" width="100%">
         <tr>

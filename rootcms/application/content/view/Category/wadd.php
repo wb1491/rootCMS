@@ -30,7 +30,7 @@
       <li class="current"><a href="javascript:;;">基本属性</a></li>
     </ul>
   </div>
-  <form class="J_ajaxForms" name="myform" id="myform" action="{: url("Category/add")}" method="post">
+  <form class="J_ajaxForms" name="myform" id="myform" action="{:url("Category/add")}" method="post">
     <div class="J_tabs_contents">
       <div>
         <div class="h_a">基本属性</div>
@@ -173,7 +173,7 @@ $(function(){
 										},{
 											name: '返回栏目管理页',
 											callback:function(){
-												window.location.href = "{: url('Category/index',array('catid'=>$catid))}";
+												window.location.href = "{:url('Category/index',array('catid'=>$catid))}";
 												return true;
 											}
 										}

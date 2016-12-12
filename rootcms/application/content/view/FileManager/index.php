@@ -121,7 +121,7 @@
                         </tr>
                     <if condition="$dir neq '' && $dir neq '.' ">
                         <tr>
-                            <td align="left" colspan="2"><a href="{: url('',array('dir'=>dirEnCode( $dir . '..' )))}"><img src="{$config_siteurl}statics/images/folder-closed.gif" />上一层目录</a></td>
+                            <td align="left" colspan="2"><a href="{:url('',array('dir'=>dirEnCode( $dir . '..' )))}"><img src="{$config_siteurl}statics/images/folder-closed.gif" />上一层目录</a></td>
                         </tr>
                     </if>
                     <volist name="tplist" id="vo">
@@ -154,7 +154,7 @@
                             </td>
                         <else />
                             <img src="{$tplextlist[$vo['name']]}" width='18px' style="vertical-align: bottom;" />
-                            <a href="{: url('',array( 'dir'=>dirEnCode($dir.$vo['oldname']) ))}"><b>{$vo.name}</b></a>
+                            <a href="{:url('',array( 'dir'=>dirEnCode($dir.$vo['oldname']) ))}"><b>{$vo.name}</b></a>
                             </td>
                             <td>
                                 <foreach name='listButton[dir]' item="ls">
@@ -197,7 +197,7 @@
           $("#flter_msk").attr('style', 'display:;position:absolute;width:100%; height:350px;filter:alpha(opacity=0);opacity:0;-moz-opacity:0;z-index:19;');
           var args = args ? '&args=' + args : '';
           Wind.use("artDialog", "iframeTools", function () {
-              art.dialog.open('{: url("swfupload","&dir=".dirEnCode($dir) )}' + args, {
+              art.dialog.open('{:url("swfupload","&dir=".dirEnCode($dir) )}' + args, {
                   title: name,
                   id: uploadid,
                   width: '650px',
@@ -224,7 +224,7 @@
           var d = opobj.iframe.contentWindow;
           var dir = "{:dirEnCode($dir)}";
           var files = d.$("#att-name").html();
-          var url = "{: url('unzip')}&dir=" + dir + "&files=" + files;
+          var url = "{:url('unzip')}&dir=" + dir + "&files=" + files;
 
           Wind.use("artDialog", "iframeTools", function () {
               art.dialog.tips("正在解压文件 ...");

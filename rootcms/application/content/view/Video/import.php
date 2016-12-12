@@ -2,7 +2,7 @@
 <Admintemplate file="Common/Head"/>
 <body class="body_none" style="width:600px;">
 <div class="wrap_pop">
-  <form class="J_ajaxForm" action="{: url('import')}" method="post">
+  <form class="J_ajaxForm" action="{:url('import')}" method="post">
     <div class="pop_cont pop_table" style="overflow-x:hidden;">
       <input type="hidden" name="videourl" value="{$videofile}"/>
       <input type="hidden" name="path" value="{$path}"/>

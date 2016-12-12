@@ -3,7 +3,7 @@
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
   <Admintemplate file="Common/Nav"/>
-  <form class="J_ajaxForm" action="{: url("Field/listorder")}" method="post">
+  <form class="J_ajaxForm" action="{:url("Field/listorder")}" method="post">
   <div class="table_list">
   <table width="100%" cellspacing="0" >
         <thead>

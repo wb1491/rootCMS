@@ -52,7 +52,7 @@
             </ul>
         </div>
         <?php }?>
-        <form action="{: url('diradd',array('dir'=>dirEnCode($dir) ))}" method="post" name="myform" class="J_ajaxForm">
+        <form action="{:url('diradd',array('dir'=>dirEnCode($dir) ))}" method="post" name="myform" class="J_ajaxForm">
             <div class="table_full">
                 <table cellpadding="2" cellspacing="1" class="table_form" width="100%">
                     <tr>

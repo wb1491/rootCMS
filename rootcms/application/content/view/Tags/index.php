@@ -3,7 +3,7 @@
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
   <Admintemplate file="Common/Nav"/>
-  <form name="myform" class="J_ajaxForm" action="{: url('delete')}" method="post">
+  <form name="myform" class="J_ajaxForm" action="{:url('delete')}" method="post">
   <div class="table_list">
   <table width="100%" cellspacing="0">
         <thead>
@@ -51,7 +51,7 @@
   <div class="btn_wrap">
       <div class="btn_wrap_pd">             
       	<label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>
-        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit" data-action="{: url('index')}">排序</button>
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit" data-action="{:url('index')}">排序</button>
         <?php
 		if(\Libs\System\RBAC::authenticate('delete')){
 		?>

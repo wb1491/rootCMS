@@ -3,7 +3,7 @@
 <body class="J_scroll_fixed">
 <div class="wrap J_check_wrap">
   <Admintemplate file="Common/Nav"/>
-  <form name="myform" class="J_ajaxForm" action="{: url("item")}" method="post">
+  <form name="myform" class="J_ajaxForm" action="{:url("item")}" method="post">
     <div class="table_list"> 
     <table width="100%" cellspacing="0">
         <thead>
@@ -28,7 +28,7 @@
               <td align="center">{$vo.data.inputtime|date="Y-m-d H:i:s",###}</td>
               <td align="center">
               <a href="{$vo.data.url}" target="_blank">原文</a> | 
-              <a onClick="javascript:openwinx('{: url("Content/edit",array("catid"=>$vo['catid'],"id"=>$vo['id']  ))}','')" href="javascript:;">原文编辑</a>
+              <a onClick="javascript:openwinx('{:url("Content/edit",array("catid"=>$vo['catid'],"id"=>$vo['id']  ))}','')" href="javascript:;">原文编辑</a>
               <?php
 			   if(\Libs\System\RBAC::authenticate('item_manage')){
 			  ?>
@@ -47,7 +47,7 @@
     </div>
     <div class="">
       <div class="btn_wrap_pd">
-        <button class="btn btn_submit mr10 J_ajax_submit_btn" data-action="{: url("Content/Position/public_item_listorder")}" type="submit">排序</button>
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" data-action="{:url("Content/Position/public_item_listorder")}" type="submit">排序</button>
         <button class="btn mr10 J_ajax_submit_btn" type="submit">移出</button>
         <input type="hidden" value="{$posid}" name="posid">
       </div>

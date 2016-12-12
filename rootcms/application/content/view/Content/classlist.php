@@ -4,23 +4,23 @@
 <div class="wrap J_check_wrap">
   <div class="nav">
     <ul class="cc">
-      <li <if condition=" !isset($_GET['status']) ">class="current"</if>><a href="{: url('Content/classlist', array('catid'=>$catid)  )}">{$catname}列表（{$sum}条）</a></li>
-      <li <if condition=" isset($_GET['status']) ">class="current"</if>><a href="{: url('Content/classlist', array('catid'=>$catid ,'search'=>1 ,'status'=>1)  )}">待审核文章（{$checkSum}条）</a></li>
+      <li <if condition=" !isset($_GET['status']) ">class="current"</if>><a href="{:url('Content/classlist', array('catid'=>$catid)  )}">{$catname}列表（{$sum}条）</a></li>
+      <li <if condition=" isset($_GET['status']) ">class="current"</if>><a href="{:url('Content/classlist', array('catid'=>$catid ,'search'=>1 ,'status'=>1)  )}">待审核文章（{$checkSum}条）</a></li>
     </ul>
   </div>
   <div class="mb10">
-		<a href="javascript:void(0)" onClick="javascript:openwinx('{: url("Content/add",array("catid"=>$catid))}','')" class="btn" title="添加内容"><span class="add"></span>添加内容</a>
+		<a href="javascript:void(0)" onClick="javascript:openwinx('{:url("Content/add",array("catid"=>$catid))}','')" class="btn" title="添加内容"><span class="add"></span>添加内容</a>
          栏目列表生成：<select class="select_2" onChange="window.location.href=''+this.value+''">
-       <option value="{: url('Createhtml/categoryhtml',array('catid'=>$catid))}" >列表生成</option>
-       <option value="{: url('Createhtml/categoryhtml',array('catid'=>$catid))}">生成当前栏目列表</option>
+       <option value="{:url('Createhtml/categoryhtml',array('catid'=>$catid))}" >列表生成</option>
+       <option value="{:url('Createhtml/categoryhtml',array('catid'=>$catid))}">生成当前栏目列表</option>
        <if condition=" $parentid "> 
-       <option value="{: url('Createhtml/categoryhtml',array('catid'=>$parentid))}">生成父栏目列表</option>
+       <option value="{:url('Createhtml/categoryhtml',array('catid'=>$parentid))}">生成父栏目列表</option>
        </if>
     </select>
     <a href="{$url}" target="_blank"  class="btn" title="访问该栏目">访问该栏目</a>
   </div>
   <div class="h_a">搜索</div>
-  <form method="post" action="{: url('classlist',array('catid'=>$catid))}">
+  <form method="post" action="{:url('classlist',array('catid'=>$catid))}">
   <input type="hidden" value="{$catid}" name="catid">
   <input type="hidden" value="0" name="steps">
   <input type="hidden" value="1" name="search">
@@ -75,10 +75,10 @@
           <tr>
             <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[]" value="{$vo.id}"></td>
             <td><input name='listorders[{$vo.id}]' class="input mr5"  type='text' size='3' value='{$vo.listorder}'></td>
-            <td align="center"><a href="{: url("Createhtml/batch_show", array("catid"=>$vo['catid'] ,"steps"=>"0" ,"ids"=>$vo['id'])  )}" title="点击生成">{$vo.id}</a></td>
+            <td align="center"><a href="{:url("Createhtml/batch_show", array("catid"=>$vo['catid'] ,"steps"=>"0" ,"ids"=>$vo['id'])  )}" title="点击生成">{$vo.id}</a></td>
             <td><if condition=" $vo['status']==99 "><a href="{$vo.url}" target="_blank"><span style="" >{$vo.title}</span></a>
                 <else/>
-                <a href="{: url('public_preview',array('catid'=>$vo['catid'],'id'=>$vo['id']) )}" target="_blank"><font color="#FF0000">[未审核]</font> - {$vo.title}</a>
+                <a href="{:url('public_preview',array('catid'=>$vo['catid'],'id'=>$vo['id']) )}" target="_blank"><font color="#FF0000">[未审核]</font> - {$vo.title}</a>
                 </if>
               <if condition=" $vo['thumb']!='' "> <img src="{$config_siteurl}statics/images/icon/small_img.gif" title="标题图片"> </if>
               <if condition=" $vo['posid'] "> <img src="{$config_siteurl}statics/images/icon/small_elite.gif" title="推荐位"> </if>
@@ -108,13 +108,13 @@
     <div class="btn_wrap">
       <div class="btn_wrap_pd">
         <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
-        <button class="btn J_ajax_submit_btn" type="submit" data-action="{: url('Content/listorder',array('catid'=>$catid))}">排序</button>
-        <button class="btn J_ajax_submit_btn" type="submit" data-action="{: url('Content/public_check',array('catid'=>$catid))}">审核</button>
-        <button class="btn J_ajax_submit_btn" type="submit" data-action="{: url('Content/public_nocheck',array('catid'=>$catid))}">取消审核</button>
-        <button class="btn J_ajax_submit_btn" type="submit" data-action="{: url('Content/delete',array('catid'=>$catid))}">删除</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:url('Content/listorder',array('catid'=>$catid))}">排序</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:url('Content/public_check',array('catid'=>$catid))}">审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:url('Content/public_nocheck',array('catid'=>$catid))}">取消审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:url('Content/delete',array('catid'=>$catid))}">删除</button>
         <button class="btn" type="button" onClick="pushs()">推送</button>
         <button class="btn" type="button" id="J_Content_remove">批量移动</button>
-        <button class="btn J_ajax_submit_btn" type="submit" data-action="{: url('Createhtml/batch_show',array('catid'=>$catid,'steps'=>0))}">批量生成HTML</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:url('Createhtml/batch_show',array('catid'=>$catid,'steps'=>0))}">批量生成HTML</button>
       </div>
     </div>
   </form>

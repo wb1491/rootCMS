@@ -28,12 +28,17 @@ class ContentData extends Model {
     protected  $parent = NULL;
 
     public function __construct($name="",$modelid=0) {
-        $data = [];
         if(is_array($name)|| is_object($name)){
             $this->data = $name;
-            $modelid = $this->data['modelid'];
-        }else{
+            if(isset($this->data['modelid'])){
+                $modelid = $this->data['modelid'];
+            }elseif(isset($this->data['catid'])){
+                $modelid = getCategory($this->data['catid'], "modelid");
+            }
+        }elseif(!empty($name)){
             $this->name = $name."_data";
+        }else{
+            exception("模型名称不能为空！");
         }
         if(!empty($modelid)){
             $this->modelid = $modelid;
@@ -41,7 +46,7 @@ class ContentData extends Model {
             if (empty($modelCache[$this->modelid])) {
                 return false;
             }
-            if(! $this->parent instanceof ContentData){
+            if(! $this->parent instanceof Content){
                 $this->parent = \app\content\model\Content::getInstance($modelid);
             }
             //根据模型id重新赋值name
@@ -51,6 +56,7 @@ class ContentData extends Model {
             $this->table = config("database.prefix").$this->name;
             $this->class = get_class($this);
             $this->db()->name($this->name);
+            $this->db()->table($this->table);
             $this->pk = $this->getPk($this->name);
         }
     }

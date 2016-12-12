@@ -151,7 +151,7 @@ class Index extends Base {
         //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         //模型ID
         $modelid = $category['modelid'];
-        $data = \app\content\model\Content::getInstance($modelid)->relation()->where(array("id" => $id, 'status' => 99))->find();
+        $data = \app\content\model\Content::getInstance($modelid)->relation(true)->where(array("id" => $id, 'status' => 99))->find()->toArray();
         if (empty($data)) {
             send_http_status(404);
             exit;
