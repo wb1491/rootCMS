@@ -336,7 +336,8 @@ function loadURL(a, b){
                 $("#showinfo").modal('show');
                 $("#showinfo").on('hidden.bs.modal', function (e) {loadURL(obj.jumpurl,b,flg);});
             }else{
-                b.css({"opacity":"0.0"}).html(a).delay(50).animate({"opacity":"1.0"},300),a=null,b=null;
+                b.css({"opacity":"0.0"}).html(a).delay(50).animate({"opacity":"1.0"},300),
+                $("html")[0].scrollHeight = ($("html")[0].scrollHeight < b.height() ? b.height():$("html")[0].scrollHeight),a=null,b=null;
                 pressContentUrl();
             }
         },
