@@ -155,11 +155,9 @@
         <script src="{$statics_admin}{$admin_theme}js/notification/SmartNotification.js"></script>
         
         <!-- MAIN APP JS FILE -->
-        <script src="{$statics_admin}{$admin_theme}js/app.js"></script>
+        <script src="{$statics_admin}{$admin_theme}js/appv1.8.js"></script>
 
         <script type="text/javascript">
-            runAllForms();
-
             $(function () {
                 // Validation
                 $("#login-form").validate({
@@ -229,6 +227,10 @@
                             }
                         });
                     }
+                });
+                
+                $("#sbbt").click(function(){
+                    $("#login-form").submit();
                 });
                 
                 $('#code').focus(function(){
