@@ -1,4 +1,4 @@
-<template file='Content/header_file.php'/>
+<template file='content/header_file.php'/>
 <!-- Modal -->
 <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -21,7 +21,7 @@
 
 <div class="conbox Mfont">
   <h4 class="con-cru">
-    <a href="{$config_siteurl}">{$Config.sitename}</a> &gt; 
+    <a href="{$config_siteurl}">{$config.sitename}</a> &gt; 
     <navigate catid="$catid" space=" &gt; " />
   </h4>
   <div class="content">

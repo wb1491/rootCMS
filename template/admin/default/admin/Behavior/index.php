@@ -52,7 +52,14 @@
           <td>{$vo.remark}</td>
           <td align="center"><if condition="$vo['type'] eq 1">控制器<elseif condition="$vo['type'] eq 2"/>视图</if></td>
         <td align="center"><if condition="$vo['status']">正常<else /><font color="#FF0000">禁用</font></if></td>
-        <td align="center"><a href="{:url('Behavior/edit',array('id'=>$vo['id']))}">编辑</a> | <if condition="$vo['status']"><a href="{:url('Behavior/status',array('id'=>$vo['id']))}">禁用</a><else /><font color="#FF0000"><a href="{:url('Behavior/status',array('id'=>$vo['id']))}">启用</a></font></if> | <a href="{:url('Behavior/delete',array('id'=>$vo['id']))}" class="J_ajax_del">删除</a></td>
+        <td align="center">
+          <a href="{:url('admin/Behavior/edit',array('id'=>$vo['id']))}">编辑</a> | 
+          <if condition="$vo['status']">
+            <a href="{:url('admin/Behavior/status',array('id'=>$vo['id']))}">禁用</a>
+          <else />
+            <font color="#FF0000"><a href="{:url('admin/Behavior/status',array('id'=>$vo['id']))}">启用</a></font>
+          </if> | 
+          <a href="{:url('Behavior/delete',array('id'=>$vo['id']))}" class="J_ajax_del">删除</a></td>
         </tr>
       </volist>
     </table>

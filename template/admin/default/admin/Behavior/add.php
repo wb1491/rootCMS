@@ -63,7 +63,7 @@
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label">行为规则</label>
-        <div class="col-md-6">
+        <div class="col-md-6 Js_list">
           <div class="row">
             <div class="col-md-2 paddingfixright">
               <input type="test" name="listorder[0]" placeholder="排序" class="form-control" value=""/>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <a href="" class="btn btn-primary link_add Js_ul_list_add" data-related="addItem">添加规则</a>
+          <a href="javascript:void(0)" class="btn btn-primary link_add Js_list_add" data-related="addItem">添加规则</a>
         </div>
       </div>
     </fieldset>
@@ -87,13 +87,12 @@
     </div>
   </form>
 </div>
-<script src="{$config_siteurl}statics/js/common.js?v"></script>
 <script type="text/javascript">
-var Js_ul_list_add = $('a.Js_ul_list_add');
+var Js_list_add = $('a.Js_list_add');
 var new_key = 0;
-if (Js_ul_list_add.length) {
+if (Js_list_add.length) {
     //添加
-    Js_ul_list_add.click(function (e) {
+    Js_list_add.click(function (e) {
         e.preventDefault();
         new_key++;
         var $this = $(this);
@@ -109,11 +108,9 @@ if (Js_ul_list_add.length) {
     });
 
     //删除
-    $('ul.J_ul_list_public').on('click', 'a.J_ul_list_remove', function (e) {
+    $('ul.J_list_public').on('click', 'a.J_ul_list_remove', function (e) {
         e.preventDefault();
         $(this).parents('li').remove();
     });
 }
 </script>
-</body>
-</html>
