@@ -35,10 +35,10 @@
             <td align='center'>
             <?php
 			$operate = array();
-			if(\Libs\System\RBAC::authenticate('edit')){
+			if(\System\RBAC::authenticate('edit')){
 				$operate[] = '<a href="'. url("Field/edit",array("fieldid"=>$vo['fieldid'],"modelid"=>$vo['modelid'])).'">修改</a>';
 			}
-			if(\Libs\System\RBAC::authenticate('disabled')){
+			if(\System\RBAC::authenticate('disabled')){
 				if(in_array($vo['field'],$forbid_fields)){
 					$operate[] = '<font color="#BEBEBE"> 隐藏 </font>';
 				}else{
@@ -49,7 +49,7 @@
 					}
 				}
 			}
-			if(\Libs\System\RBAC::authenticate('delete')){
+			if(\System\RBAC::authenticate('delete')){
 				if(in_array($vo['field'],$forbid_delete)){
 					$operate[] = '<font color="#BEBEBE"> 删除</font>';
 				}else{

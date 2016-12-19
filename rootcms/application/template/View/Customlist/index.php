@@ -25,13 +25,13 @@
               <td align="center">
               <?php
 				$op = array();
-				if(\Libs\System\RBAC::authenticate('edit')){
+				if(\System\RBAC::authenticate('edit')){
 					$op[] = '<a href="'. url("Customlist/edit",array('id'=>$vo['id'])).'">修改</a>';
 				}
-				if(\Libs\System\RBAC::authenticate('delete')){
+				if(\System\RBAC::authenticate('delete')){
 					$op[] = '<a class="J_ajax_del" href="'. url("Customlist/delete",array('id'=>$vo['id'])).'">删除</a>';
 				}
-				if(\Libs\System\RBAC::authenticate('generate')){
+				if(\System\RBAC::authenticate('generate')){
 					$op[] = '<a href="'. url("Customlist/generate",array('id'=>$vo['id'])).'">更新</a>';
 				}
 				echo implode(' | ',$op);
@@ -49,7 +49,7 @@
       <div class="btn_wrap_pd">
         <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label> 
         <?php
-		if(\Libs\System\RBAC::authenticate('generate')){
+		if(\System\RBAC::authenticate('generate')){
 		?>
         <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">生成列表</button>
         <?php

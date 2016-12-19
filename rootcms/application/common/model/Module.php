@@ -40,7 +40,7 @@ class Module extends Model {
         if (is_object(CMS()->Module)) {
             return CMS()->Module->isInstall($moduleName) ? false : true;
         } else {
-            return \libs\system\Module::getInstance()->isInstall($moduleName) ? false : true;
+            return \system\Module::getInstance()->isInstall($moduleName) ? false : true;
         }
     }
 

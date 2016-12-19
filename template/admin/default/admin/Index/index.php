@@ -68,7 +68,7 @@
         </div>
         <!-- end logout button -->
         
-        <?php if(\Libs\System\RBAC::authenticate('admin/Index/cache')){ ?>
+        <?php if(\System\RBAC::authenticate('admin/Index/cache')){ ?>
         <!-- updatecache button -->
         <div id="upcache" class="btn-header transparent pull-right">
           <span> <a href="javascript:void(0);" data-action="loadSUrl" data-url="{:url('admin/Index/cache')}" data-title="更新服务器缓存" title="更新服务器缓存">

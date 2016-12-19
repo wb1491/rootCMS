@@ -42,16 +42,16 @@
             <td align="center">
             <?php
 		  $op = array();
-		  if(\Libs\System\RBAC::authenticate('item')){
+		  if(\System\RBAC::authenticate('item')){
 			  $op[] =  '<a href="'. url('Position/item',array('posid'=>$vo['posid'])).'">信息管理</a>';
 		  }
-		   if(\Libs\System\RBAC::authenticate('rebuilding')){
+		   if(\System\RBAC::authenticate('rebuilding')){
 			  $op[] =  '<a href="'. url('Position/rebuilding',array('posid'=>$vo['posid'])).'">数据重建</a>';
 		  }
-		  if(\Libs\System\RBAC::authenticate('edit')){
+		  if(\System\RBAC::authenticate('edit')){
 			  $op[] = '<a href="'. url('Position/edit',array('posid'=>$vo['posid'])).'">修改</a>';
 		  }
-		  if(\Libs\System\RBAC::authenticate('delete')){
+		  if(\System\RBAC::authenticate('delete')){
 			  $op[] = '<a class="J_ajax_del" href="'. url('Position/delete',array('posid'=>$vo['posid'])).'">删除</a>';
 		  }
 		  echo implode(" | ",$op);

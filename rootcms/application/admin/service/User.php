@@ -67,7 +67,7 @@ class User {
      * @return boolean 失败返回false，成功返回当前登陆用户基本信息
      */
     public function isLogin() {
-        $userId = \libs\util\Encrypt::authcode(session(self::userUidKey), 'DECODE');
+        $userId = \util\Encrypt::authcode(session(self::userUidKey), 'DECODE');
         if (empty($userId)) {
             return false;
         }
@@ -136,11 +136,11 @@ class User {
      */
     private function registerLogin(array $userInfo) {
         //写入session
-        session(self::userUidKey, \libs\util\Encrypt::authcode((int) $userInfo['id'], ''));
+        session(self::userUidKey, \util\Encrypt::authcode((int) $userInfo['id'], ''));
         //更新状态
          model('admin/User')->loginStatus((int) $userInfo['id']);
         //注册权限
-        \libs\system\RBAC::saveAccessList((int) $userInfo['id']);
+        \system\RBAC::saveAccessList((int) $userInfo['id']);
     }
 
     /**

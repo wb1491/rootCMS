@@ -6,7 +6,7 @@
             <ul class="cc">
                 <li><a href="{:url('Style/index')}">模板管理</a></li>
                 <?php
-				if(\Libs\System\RBAC::authenticate('add')){
+				if(\System\RBAC::authenticate('add')){
 				?>
                 <li><a href="{:url("Template/Style/add",array("dir"=>urlencode(str_replace('/','-',$dir))    ))}">在此目录下添加模板</a></li>
                 <?php

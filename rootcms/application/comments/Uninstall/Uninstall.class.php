@@ -10,7 +10,7 @@
 
 namespace Comments\Uninstall;
 
-use Libs\System\UninstallBase;
+use System\UninstallBase;
 
 class Uninstall extends UninstallBase {
 

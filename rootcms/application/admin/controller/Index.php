@@ -35,7 +35,7 @@ class Index extends AdminBase {
     public function upcache(){
         $type = input("type");
         if ($type) {
-            $Dir = new \libs\util\Dir();
+            $Dir = new \util\Dir();
             $cache =  model('common/Cache');
             set_time_limit(0);
             switch ($type) {

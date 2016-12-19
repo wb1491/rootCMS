@@ -11,7 +11,7 @@
 namespace app\common\controller;
 
 use app\admin\service\User;
-use libs\system\RBAC;
+use system\RBAC;
 
 //定义是后台
 define('IN_ADMIN', true);

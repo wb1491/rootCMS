@@ -39,7 +39,7 @@ class User extends Memberbase {
         //字段内容
         $forminfos = $content_form->get($data);
         
-        $auth_data = urlencode(\Libs\Util\Encrypt::authcode($this->userid, ''));
+        $auth_data = urlencode(\Util\Encrypt::authcode($this->userid, ''));
         $this->assign("auth_data",$auth_data);
         $this->assign("forminfos", $forminfos);
         $this->assign('type', input('get.type', 'profile'));

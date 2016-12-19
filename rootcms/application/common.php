@@ -251,7 +251,7 @@ function in_array_case($value, $array) {
 function sys_cache($name, $value = '', $options = null) {
     static $cache = '';
     if (empty($cache)) {
-        $cache = \libs\system\Cache::getInstance();
+        $cache = \system\Cache::getInstance();
     }
     // 获取缓存
     if ('' === $value) {
@@ -358,7 +358,7 @@ function CMS() {
  * @return type
  */
 function service($name, $params = array()) {
-    return libs\system\Service::getInstance($name, $params);
+    return system\Service::getInstance($name, $params);
 }
 /**
  * 生成上传附件验证
@@ -565,7 +565,7 @@ function page($total, $size = 0, $number = 0, $config = array()) {
         $PageLink['list'] = $URLRULE[1];
         $defaultConfig['rule'] = $PageLink;
     }
-    $Page = new \Libs\Util\Page($total, $defaultConfig['size'], $defaultConfig['number'], $defaultConfig['list'], $defaultConfig['param'], $defaultConfig['rule'], $defaultConfig['isrule']);
+    $Page = new \Util\Page($total, $defaultConfig['size'], $defaultConfig['number'], $defaultConfig['list'], $defaultConfig['param'], $defaultConfig['rule'], $defaultConfig['isrule']);
     $Page->SetPager('default', $defaultConfig['tpl'], $defaultConfig['tplconfig']);
     return $Page;
 }

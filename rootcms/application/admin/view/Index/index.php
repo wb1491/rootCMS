@@ -51,7 +51,7 @@ if (window.top !== window.self) {
           <a href="{:url('Publics/logout')}" class="mr10">[注销]</a>
           {:tag("view_admin_top_menu")}
           <a href="{$Config.siteurl}" class="home" target="_blank">前台首页</a>
-          <?php if(\Libs\System\RBAC::authenticate('admin/Index/cache')){ ?>
+          <?php if(\System\RBAC::authenticate('admin/Index/cache')){ ?>
           <a href="javascript:;;" id="deletecache" class="home"  style="color:#FFF">缓存更新</a>
           <?php } ?>
         </div>
@@ -94,7 +94,7 @@ if (window.top !== window.self) {
 <script src="{$config_siteurl}statics/js/common.js"></script>
 <literal>
 <script>
-<?php if(\Libs\System\RBAC::authenticate('admin/Index/cache')){ ?>
+<?php if(\System\RBAC::authenticate('admin/Index/cache')){ ?>
 $("#deletecache").on('click',function(e){
     e.preventDefault();
     e.stopPropagation();

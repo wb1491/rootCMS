@@ -11,7 +11,7 @@
 namespace Content\Controller;
 
 use Common\Controller\AdminBase;
-use Libs\System\Url;
+use System\Url;
 
 class Category extends AdminBase {
 

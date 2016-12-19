@@ -95,7 +95,7 @@ class Moduleshop extends AdminBase {
 
     //目录权限判断通过后获取升级包下载地址进行模块下载
     public function public_upgrade_1() {
-        if (\Libs\System\RBAC::authenticate('upgrade') !== true) {
+        if (\System\RBAC::authenticate('upgrade') !== true) {
             $this->errors('您没有该项权限！');
         }
         $data = cache('Cloud');
@@ -125,7 +125,7 @@ class Moduleshop extends AdminBase {
 
     //移动升级包到模块目录
     public function public_upgrade_2() {
-        if (\Libs\System\RBAC::authenticate('upgrade') !== true) {
+        if (\System\RBAC::authenticate('upgrade') !== true) {
             $this->errors('您没有该项权限！');
         }
         $data = cache('Cloud');
@@ -148,7 +148,7 @@ class Moduleshop extends AdminBase {
 
     //升级模块
     public function public_upgrade_3() {
-        if (\Libs\System\RBAC::authenticate('upgrade') !== true) {
+        if (\System\RBAC::authenticate('upgrade') !== true) {
             $this->errors('您没有该项权限！');
         }
         $module = input('get.module');
@@ -164,7 +164,7 @@ class Moduleshop extends AdminBase {
 
     //目录权限判断通过后获取下载地址进行模块下载
     public function public_step_1() {
-        if (\Libs\System\RBAC::authenticate('install') !== true) {
+        if (\System\RBAC::authenticate('install') !== true) {
             $this->errors('您没有该项权限！');
         }
         $sign = input('get.sign', '', 'trim');
@@ -208,7 +208,7 @@ class Moduleshop extends AdminBase {
 
     //移动目录到模块
     public function public_step_2() {
-        if (\Libs\System\RBAC::authenticate('install') !== true) {
+        if (\System\RBAC::authenticate('install') !== true) {
             $this->errors('您没有该项权限！');
         }
         $data = cache('Cloud');
@@ -231,7 +231,7 @@ class Moduleshop extends AdminBase {
 
     //安装模块
     public function public_step_3() {
-        if (\Libs\System\RBAC::authenticate('install') !== true) {
+        if (\System\RBAC::authenticate('install') !== true) {
             $this->errors('您没有该项权限！');
         }
         $module = input('get.module');

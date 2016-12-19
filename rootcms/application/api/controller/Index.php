@@ -15,7 +15,7 @@ use Common\Controller\ShuipFCMS;
 class IndexController extends ShuipFCMS {
 
     public function token() {
-        $token = \Libs\Util\Encrypt::authcode($_POST['token'], 'DECODE', config('CLOUD_USERNAME'));
+        $token = \Util\Encrypt::authcode($_POST['token'], 'DECODE', config('CLOUD_USERNAME'));
         if (!empty($token)) {
             cache($this->Cloud->getTokenKey(), $token, 3600);
             $this->success('验证通过');

@@ -71,7 +71,7 @@ class DownloadController extends Base {
             $aut = md5($this->userid . $this->groupid . substr($_SERVER['HTTP_USER_AGENT'], 0, 254));
             //加密
             //格式：aut|栏目ID|信息id|下载编号|字段
-            $key = \Libs\Util\Encrypt::authcode(implode('|', array(
+            $key = \Util\Encrypt::authcode(implode('|', array(
                         $aut,
                         $this->catid,
                         $this->id,
@@ -105,7 +105,7 @@ class DownloadController extends Base {
         if (!empty($key)) {
             $key = str_replace(array('+', '%23', '%2F', '%3F', '%26', '%3D', '%2B'), array(' ', '#', '/', '?', '&', '=', '+'), $key);
         }
-        $key = \Libs\Util\Encrypt::authcode($key, "DECODE");
+        $key = \Util\Encrypt::authcode($key, "DECODE");
         if (empty($key)) {
             $this->error('下载地址非法！');
         }

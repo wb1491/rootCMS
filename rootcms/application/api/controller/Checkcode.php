@@ -17,7 +17,7 @@ class Checkcode extends CMS {
     public function index() {
         //关闭页面trace
         \think\Config::set("app_trace",false);
-        $checkcode = new \libs\util\Checkcode();
+        $checkcode = new \util\Checkcode();
         //验证码类型
         $checkcode->type = input('type', 'verify', 'strtolower');
         //设置长度
@@ -66,7 +66,7 @@ class Checkcode extends CMS {
      * @return type 
      */
     public function verifyValidate($type, $input) {
-        $checkcode = new \libs\util\Checkcode();
+        $checkcode = new \util\Checkcode();
         $checkcode->type = $type;
         return $checkcode->validate($input, false);
     }

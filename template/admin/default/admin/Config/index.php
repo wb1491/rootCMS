@@ -55,10 +55,10 @@
                 <label class="col-md-2 control-label">首页URL规则:</label>
                 <div class="col-md-6">
                   <div style='<if condition=" $Site['generate'] eq 0 "> display:none</if>' id="index_ruleid_1">
-                      <?php echo \libs\util\Form::select($IndexURL[1], $Site['index_urlruleid'], 'class="form-control" name="index_urlruleid" ' . ($Site['generate'] == 0 ? "disabled" : "") . ' id="index_urlruleid"'); ?>
+                      <?php echo \util\Form::select($IndexURL[1], $Site['index_urlruleid'], 'class="form-control" name="index_urlruleid" ' . ($Site['generate'] == 0 ? "disabled" : "") . ' id="index_urlruleid"'); ?>
                   </div>
                   <div style='<if condition=" $Site['generate'] eq 1 "> display:none</if>' id="index_ruleid_0">
-                      <?php echo \libs\util\Form::select($IndexURL[0], $Site['index_urlruleid'], 'class="form-control"name="index_urlruleid" ' . ($Site['generate'] == 1 ? "disabled" : "") . ' id="index_urlruleid"'); ?> 
+                      <?php echo \util\Form::select($IndexURL[0], $Site['index_urlruleid'], 'class="form-control"name="index_urlruleid" ' . ($Site['generate'] == 1 ? "disabled" : "") . ' id="index_urlruleid"'); ?> 
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -78,7 +78,7 @@
               </div>
               <div class="form-group">
                 <label class="col-md-2 control-label">TagURL规则:</label>
-                <div class="col-md-6"><?php echo \libs\util\Form::select($TagURL, $Site['tagurl'], 'class="form-control" name="tagurl" id="tagurl"', 'TagURL规则选择'); ?></div>
+                <div class="col-md-6"><?php echo \util\Form::select($TagURL, $Site['tagurl'], 'class="form-control" name="tagurl" id="tagurl"', 'TagURL规则选择'); ?></div>
               </div>
               <div class="form-group">
                 <label class="col-md-2 control-label">验证码类型:</label>

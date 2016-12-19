@@ -47,7 +47,7 @@
           ?>
           </select> 
           <?php
-		  if(\Libs\System\RBAC::authenticate('Comments/Comments/addfenbiao')){
+		  if(\System\RBAC::authenticate('Comments/Comments/addfenbiao')){
 		  ?>
           <a href="javascript:confirmurl('{:url("Comments/Comments/addfenbiao")}','确认要创建一张新的分表吗？')" >创建一张新的分表</a>
           <?php

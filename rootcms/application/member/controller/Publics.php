@@ -201,7 +201,7 @@ class Publics extends Memberbase {
                         //发送邮件
                         $URL_MODEL = config('URL_MODEL');
                         config("URL_MODEL", 0);
-                        $verifyEmailUrl =  url('member/Index/verifyemail', array('key' => urlencode(\libs\util\Encrypt::authcode($userid . '|' . $memberinfo['username'] . '|' . $memberinfo['email'], '', '', 86400))));
+                        $verifyEmailUrl =  url('member/Index/verifyemail', array('key' => urlencode(\util\Encrypt::authcode($userid . '|' . $memberinfo['username'] . '|' . $memberinfo['email'], '', '', 86400))));
                         config("URL_MODEL", $URL_MODEL);
                         $message = $this->memberConfig['registerverifymessage'];
                         if (empty($message)) {
@@ -292,7 +292,7 @@ class Publics extends Memberbase {
     //执行密码重置
     public function resetPassword() {
         $postKey = input('post.key');
-        $key = \libs\util\Encrypt::authcode($postKey);
+        $key = \util\Encrypt::authcode($postKey);
         if (empty($key)) {
             $this->message(array(
                 'error' => 1100,
@@ -584,7 +584,7 @@ class Publics extends Memberbase {
             ));
         }
         //验证KEY
-        $email1key = \libs\util\Encrypt::authcode(implode('|', $userInfo), '', '', 3600);
+        $email1key = \util\Encrypt::authcode(implode('|', $userInfo), '', '', 3600);
         $userInfo['email1key'] = $email1key;
         //邮件地址处理
         $n = strpos($userInfo['email'], '@');
@@ -602,7 +602,7 @@ class Publics extends Memberbase {
     public function doLostPassEmail() {
         //key
         $key = input('post.key', '', '');
-        $userInfo = \libs\util\Encrypt::authcode($key);
+        $userInfo = \util\Encrypt::authcode($key);
         if (empty($userInfo)) {
             $this->message(array(
                 'error' => 1100,
@@ -623,7 +623,7 @@ class Publics extends Memberbase {
 邮件服务器自动发送邮件请勿回信 {$date}';
         }
         config("URL_MODEL", 0);
-        $LostPassUrl =  url('member/Index/resetpassword', array('key' => urlencode(\libs\util\Encrypt::authcode(implode('|', $userInfo), '', '', 86400))));
+        $LostPassUrl =  url('member/Index/resetpassword', array('key' => urlencode(\util\Encrypt::authcode(implode('|', $userInfo), '', '', 86400))));
 
         $forgetpassword = str_replace(array(
             '{$username}',

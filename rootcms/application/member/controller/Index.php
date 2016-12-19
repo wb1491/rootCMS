@@ -65,7 +65,7 @@ class Index extends Memberbase {
     //保存用户头像
     public function uploadavatar() {
         $auth_code = input("get.auth_data");
-        $auth_data = \Libs\Util\Encrypt::authcode(str_replace(' ', '+', $auth_code), 'DECODE');
+        $auth_data = \Util\Encrypt::authcode(str_replace(' ', '+', $auth_code), 'DECODE');
         if ($auth_data != $this->userid) {
             exit(json_encode(array(
                 'success' => false,
@@ -121,7 +121,7 @@ class Index extends Memberbase {
         if ($getKey) {
 			$getKey = str_replace(array('+', '%23', '%2F', '%3F', '%26', '%3D','%2B'), array(' ', '#', '/', '?', '&', '=','+'), $getKey);
         }
-        $key = \Libs\Util\Encrypt::authcode($getKey);
+        $key = \Util\Encrypt::authcode($getKey);
         if (empty($key)) {
             $this->error('验证失败，请从新提交密码找回申请！',  url('Index/lostpassword'));
         }
@@ -141,7 +141,7 @@ class Index extends Memberbase {
         if ($getKey) {
 			$getKey = str_replace(array('+', '%23', '%2F', '%3F', '%26', '%3D','%2B'), array(' ', '#', '/', '?', '&', '=','+'), $getKey);
         }
-        $key = \Libs\Util\Encrypt::authcode($getKey);
+        $key = \Util\Encrypt::authcode($getKey);
         if (empty($key)) {
             $this->error('验证失败，请从新提交密码找回申请！',  url('Index/login'));
         }

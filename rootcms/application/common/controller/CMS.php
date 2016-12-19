@@ -11,7 +11,7 @@
 namespace app\common\controller;
 
 use think\Controller;
-use libs\system\Components;
+use system\Components;
 
 class CMS extends Controller {
 

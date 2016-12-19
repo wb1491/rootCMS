@@ -221,7 +221,7 @@ class AdminController extends AdminBase {
     //删除附件缩图 
     public function public_delthumbs() {
         //检查是否有删除附件权限
-        if (\Libs\System\RBAC::authenticate('Attachment/Atadmin/delete') == false) {
+        if (\System\RBAC::authenticate('Attachment/Atadmin/delete') == false) {
             exit('您没有附件删除权限！');
         }
         $filepath = urldecode(input('get.filepath', '', ''));

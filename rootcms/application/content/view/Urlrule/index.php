@@ -28,10 +28,10 @@
           <td align='center'>
           <?php
 		  $op = array();
-		  if(\Libs\System\RBAC::authenticate('edit')){
+		  if(\System\RBAC::authenticate('edit')){
 			  $op[] =  '<a href="'. url('Urlrule/edit',array('urlruleid'=>$r['urlruleid'])).'">编辑</a>';
 		  }
-		  if(\Libs\System\RBAC::authenticate('delete')){
+		  if(\System\RBAC::authenticate('delete')){
 			  $op[] = '<a class="J_ajax_del" href="'. url('Urlrule/delete',array('urlruleid'=>$r['urlruleid'])).'">删除</a>';
 		  }
 		  echo implode(" | ",$op);

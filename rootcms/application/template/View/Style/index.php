@@ -6,7 +6,7 @@
     <ul class="cc">
       <li class="current"><a href="{:url('Style/index')}">模板管理</a></li>
       <?php
-	  if(\Libs\System\RBAC::authenticate('add')){
+	  if(\System\RBAC::authenticate('add')){
 	  ?>
       <li><a href="{:url("Template/Style/add",array("dir"=>urlencode(str_replace('/','-',$dir))    ))}">在此目录下添加模板</a></li>
       <?php
@@ -40,10 +40,10 @@
             <td align="center"> 
             <?php
 			$op = array();
-			if(\Libs\System\RBAC::authenticate('edit')){
+			if(\System\RBAC::authenticate('edit')){
 				$op[] = '<a href="'. url("Template/Style/edit",array("dir"=>urlencode(str_replace('/','-',$dir)) ,"file"=>basename($vo))).'">修改</a>';
 			}
-			if(\Libs\System\RBAC::authenticate('delete')){
+			if(\System\RBAC::authenticate('delete')){
 				$op[] = '<a class="J_ajax_del" href="'. url("Template/Style/delete",array("dir"=>urlencode(str_replace('/','-',$dir)) ,"file"=>basename($vo))).'">删除</a>';
 			}
 			echo implode(' | ',$op);

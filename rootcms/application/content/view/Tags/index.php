@@ -31,10 +31,10 @@
             <td align="center">
             <?php
 			$op = array();
-			if(\Libs\System\RBAC::authenticate('edit')){
+			if(\System\RBAC::authenticate('edit')){
 				$op[] = '<a href="'. url('Tags/edit',array('tagid'=>$vo['tagid'])).'">修改</a>';
 			}
-			if(\Libs\System\RBAC::authenticate('delete')){
+			if(\System\RBAC::authenticate('delete')){
 				$op[] = '<a class="J_ajax_del" href="'. url('Tags/delete',array('tagid'=>$vo['tagid'])).'">删除</a>';
 			}
 			echo implode(" | ",$op);
@@ -53,7 +53,7 @@
       	<label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>
         <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit" data-action="{:url('index')}">排序</button>
         <?php
-		if(\Libs\System\RBAC::authenticate('delete')){
+		if(\System\RBAC::authenticate('delete')){
 		?>
         <button class="btn  mr10 J_ajax_submit_btn" type="submit">删除</button>
         <?php

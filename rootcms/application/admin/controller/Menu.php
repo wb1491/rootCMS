@@ -29,7 +29,7 @@ class Menu extends AdminBase {
             }
         }
         $result =  db("menu")->order(array("listorder" => "ASC"))->select();
-        $tree = new \libs\util\Tree();
+        $tree = new \util\Tree();
         $tree->icon = array('&nbsp;&nbsp;&nbsp;│ ', '&nbsp;&nbsp;&nbsp;├─ ', '&nbsp;&nbsp;&nbsp;└─ ');
         $tree->nbsp = '&nbsp;&nbsp;&nbsp;';
         foreach ($result as $r) {

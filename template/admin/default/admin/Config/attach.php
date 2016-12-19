@@ -10,7 +10,7 @@
               <div class="form-group">
                 <label class="col-md-2 control-label">网站存储方案:</label>
                 <div class="col-md-6">
-                    <?php echo \libs\util\Form::select($dirverList, $Site['attachment_driver'], 'name="attachment_driver" class="form-control"'); ?> 
+                    <?php echo \util\Form::select($dirverList, $Site['attachment_driver'], 'name="attachment_driver" class="form-control"'); ?> 
                 </div>
                 <div class="col-md-4">
                   <em>存储方案请放在 {$config_siteurl}extend/libs/driver/attachment/ 目录下</em>

@@ -30,7 +30,7 @@
               <a href="{$vo.data.url}" target="_blank">原文</a> | 
               <a onClick="javascript:openwinx('{:url("Content/edit",array("catid"=>$vo['catid'],"id"=>$vo['id']  ))}','')" href="javascript:;">原文编辑</a>
               <?php
-			   if(\Libs\System\RBAC::authenticate('item_manage')){
+			   if(\System\RBAC::authenticate('item_manage')){
 			  ?>
                | <a href="javascript:item_manage({$vo.id},{$vo.posid}, {$vo.modelid},'{$vo.data.title}')">信息管理</a>
               <?php

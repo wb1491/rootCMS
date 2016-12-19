@@ -10,7 +10,7 @@
 
 namespace Member\Behavior;
 
-use Libs\System\Behavior;
+use System\Behavior;
 
 class ViewAdminTopMenuBehavior extends Behavior {
 

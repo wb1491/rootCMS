@@ -11,7 +11,7 @@
 namespace app\admin\controller;
 
 use app\common\controller\AdminBase;
-use Libs\System\Module;
+use System\Module;
 
 class Module extends AdminBase {
 

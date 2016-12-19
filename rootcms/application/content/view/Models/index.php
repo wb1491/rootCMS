@@ -26,23 +26,23 @@
         <td align='center'>
         <?php
 		$operate = array();
-		if(\Libs\System\RBAC::authenticate('edit')){
+		if(\System\RBAC::authenticate('edit')){
 			$operate[] = '<a href="'. url("edit",array("modelid"=>$vo['modelid'])).'">修改</a>';
 		}
-		if(\Libs\System\RBAC::authenticate('Field/index')){
+		if(\System\RBAC::authenticate('Field/index')){
 			$operate[] = '<a href="'. url("Field/index",array("modelid"=>$vo['modelid'])).'">字段管理</a>';
 		}
-		if(\Libs\System\RBAC::authenticate('disabled')){
+		if(\System\RBAC::authenticate('disabled')){
 			if($vo['disabled'] == 0){
 				$operate[] = '<a href="'. url("disabled",array("modelid"=>$vo['modelid'],"disabled"=>0)).'">禁用</a>';
 			}else{
 				$operate[] = '<a href="'. url("disabled",array("modelid"=>$vo['modelid'],"disabled"=>1)).'"><font color="#FF0000">启用</font></a>';
 			}
 		}
-		if(\Libs\System\RBAC::authenticate('delete')){
+		if(\System\RBAC::authenticate('delete')){
 			$operate[] = '<a class="J_ajax_del" href="'. url("delete",array("modelid"=>$vo['modelid'])).'">删除</a>';
 		}
-		if(\Libs\System\RBAC::authenticate('export')){
+		if(\System\RBAC::authenticate('export')){
 			$operate[] = '<a href="'. url("export",array("modelid"=>$vo['modelid'])).'">导出模型</a>';
 		}
 		echo implode(' | ',$operate);
