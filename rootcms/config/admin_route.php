@@ -41,10 +41,5 @@ return [
     "admin/changepwd$" => ["admin/Adminmanage/changepwd",[],[]],
     "admin/changeavr$" => ["admin/Adminmanage/changeavr",[],[]],
 
-    //api相关
-    "api/checkcode/:type/:code_len/:font_size/:width/:height" => [
-        "api/Checkcode/index", [],
-        [ "type"=>"\w+", "code_len"=>"\d+", "font_size"=>"\d+", "width"=>"\d+", "height"=>"\d+",]
-    ],
     
 ];

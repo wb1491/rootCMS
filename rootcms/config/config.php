@@ -104,7 +104,7 @@ $conf = [
     // 表单请求类型伪装变量
     'var_method'             => '_method',
     //路由配置文件分开
-    'route_config_file'      => ['content','admin'],
+    'route_config_file'      => ['content_route', 'admin_route', 'api_route'],
     
     ////////////////////////////////////////////////
     // 模板相关
