@@ -62,6 +62,8 @@ class CMS extends Controller {
         define('MODULE_EXTRESDIR', 'statics'.DS.'extres'. DS . strtolower(MODULE_NAME) . DS );
         
         $Config = sys_cache("Config");
+        //加载版本配置文件
+        \think\Config::load(CONF_PATH."version.php","version");
         $Config['version'] = \think\Config::get("version");
         self::$Cache['Config'] = $Config;
         $config_siteurl = $Config['siteurl'];
