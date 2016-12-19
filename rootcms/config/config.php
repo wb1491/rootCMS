@@ -103,6 +103,8 @@ $conf = [
     'url_controller_layer'   => 'controller',
     // 表单请求类型伪装变量
     'var_method'             => '_method',
+    //路由配置文件分开
+    'route_config_file'      => ['content','admin'],
     
     ////////////////////////////////////////////////
     // 模板相关
