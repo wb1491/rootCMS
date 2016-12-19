@@ -565,7 +565,7 @@ function page($total, $size = 0, $number = 0, $config = array()) {
         $PageLink['list'] = $URLRULE[1];
         $defaultConfig['rule'] = $PageLink;
     }
-    $Page = new \Util\Page($total, $defaultConfig['size'], $defaultConfig['number'], $defaultConfig['list'], $defaultConfig['param'], $defaultConfig['rule'], $defaultConfig['isrule']);
+    $Page = new \util\Page($total, $defaultConfig['size'], $defaultConfig['number'], $defaultConfig['list'], $defaultConfig['param'], $defaultConfig['rule'], $defaultConfig['isrule']);
     $Page->SetPager('default', $defaultConfig['tpl'], $defaultConfig['tplconfig']);
     return $Page;
 }
