@@ -97,7 +97,7 @@ class Cache extends \think\Model {
         if (empty($config['module'])) {
             $mo = "common/{$config['model']}";
         } else {
-            $mo = "" . $config['module'] . "/" . $config['model'];
+            $mo = $config['module'] . "/" . $config['model'];
         }
         $model =  model($mo);
         if ($config['action']) {
