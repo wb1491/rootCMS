@@ -14821,3 +14821,6 @@ body.smart-style-6 #header{
  #topMenu_bottons ul.dropdown-menu {
       margin-top: -5px;
  }
+ .mobile-detected .left-panel .hidden{
+    display: block !important;
+}
