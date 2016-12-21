@@ -266,7 +266,7 @@ class Config extends Model {
      * @return type
      */
     public function config_cache() {
-        $config = model("Config")->select();
+        $config = model("common/Config")->select();
         $data = array();
         foreach ($config as $v){
             $tarr = $v->visible(["varname","value"])->toArray();
