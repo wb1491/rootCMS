@@ -1,7 +1,5 @@
 <?php 
 $getMenu = isset($Custom)? $Custom : model('admin/Menu')->getMenu();
-dump($getMenu);
-exit;
 if($getMenu) {
   if(!empty($menuReturn)){
 	  echo '<div class="return"><a href="'.$menuReturn['url'].'">'.$menuReturn['name'].'</a></div>';
