@@ -145,7 +145,7 @@ class Menu extends Model {
                 ];
                 $ret[$id . $name] = $array;
                 $child = $this->getTree($a['id'], $id, $Level);
-                if ($child) {
+                if ($child && $Level <= 3) {
                     $ret[$id . $name]['items'] = $child;
                 }
             }
