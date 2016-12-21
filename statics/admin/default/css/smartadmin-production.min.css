@@ -14784,7 +14784,7 @@ body.menu-on-top.fixed-header.fixed-navigation.fixed-ribbon #ribbon {
 	border:1px solid #797979!important
 }
 body:not(.menu-on-top).desktop-detected {
-	min-height:1190px!important
+	min-height:900px!important
 }
 #extr-page body.desktop-detected {
 	min-height:100%!important
@@ -14821,6 +14821,6 @@ body.smart-style-6 #header{
  #topMenu_bottons ul.dropdown-menu {
       margin-top: -5px;
  }
- .mobile-detected .left-panel .hidden{
+ body.mobile-view-activated #left-panel .hidden{
     display: block !important;
 }
