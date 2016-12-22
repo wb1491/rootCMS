@@ -336,9 +336,10 @@ function loadURL(a, b){
                 $("#showinfo").modal('show');
                 $("#showinfo").on('hidden.bs.modal', function (e) {loadURL(obj.jumpurl,b,flg);});
             }else{
-                b.css({"opacity":"0.0"}).html(a).delay(50).animate({"opacity":"1.0"},300),
+                b.css({"opacity":"0.0"}).html(a).delay(50).animate({"opacity":"1.0"},200),
                 $("html")[0].scrollHeight = ($("html")[0].scrollHeight < b.height() ? b.height():$("html")[0].scrollHeight),a=null,b=null;
                 pressContentUrl();
+                pressContentCrumb();
             }
         },
         "error" : function (c, d, e, f){
@@ -352,7 +353,7 @@ function loadURL(a, b){
     })
 }
 function drawBreadCrumb(a){
-    var b = $("nav li.active > a"), c = b.length;
+    var b = $("#left-panel nav li.active > a"), c = b.length;
     bread_crumb.empty(), 
     bread_crumb.append($("<li>系统后台</li>")), 
     b.each(function (){
@@ -396,6 +397,13 @@ function pressContentUrl(){
             c.attr("onSubmit","return false;");
         }
     });
+}
+function pressContentCrumb(){
+    //alert($("#content .nav li:first > a").data("url"));
+    var o = $("#left-panel nav li a[href='" + $("#content .nav li:first > a").data('url') + "']");
+    var l = o.parent().addClass("active open").parent().css("display","block").parent().addClass("active open");
+    l.parent().css("display","block").parent().removeClass("hidden").addClass("active open").siblings().addClass("hidden");
+    drawBreadCrumb([$("#content .nav li.active > a").html()]);
 }
 $.intervalArr = [];
 $.menuArr = [];
@@ -828,10 +836,10 @@ $("body").on("click", function (a){
     $('[rel="popover"], [data-rel="popover"]').each(function ()
     {
         $(this).is(a.target) || 0 !== $(this).has(a.target).length || 0 !== $(".popover").has(a.target).length || $(this).popover("hide")
-    })
+    });
 }), 
 $("body").on("hidden.bs.modal", ".modal", function (){
-    $(this).removeData("bs.modal")
+    $(this).removeData("bs.modal");
 }),
 $(document).on("click","#topMenu_bottons div.btn-header a,#topMenu_bottons ul.dropdown-menu li a",function(){
     var i = $(this).data("index"),o=$("nav > ul > li:eq(" + i + ")"),s=o.children("ul");
