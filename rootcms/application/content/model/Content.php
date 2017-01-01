@@ -10,8 +10,6 @@
 
 namespace app\content\model;
 
-use think\Model;
-
 class Content extends Model {
 
     //静态成品变量 保存全局实例
@@ -19,6 +17,9 @@ class Content extends Model {
     
     //当前模型id
     public $modelid = 0;
+    
+    //设置查询结果为数据集，不是对象
+    protected $resultSetType = 'collection';
         
     /**
      * 取得内容模型实例
@@ -52,7 +53,6 @@ class Content extends Model {
         if(!empty($modelid)){
             $this->modelid = $modelid;
         }
-        
         if(!empty($this->modelid)){
             //内容模型缓存
             $modelCache = sys_cache("Model");
@@ -65,8 +65,10 @@ class Content extends Model {
         $this->connection = config("database");
         $this->table = config("database.prefix").$this->name;
         $this->class = get_class($this);
+        $this->resultSetType = "collection";
         $this->db()->name($this->name);
         $this->db()->table($this->table);
+        $this->db()->resultSetType = "collection";
         $this->pk = $this->getPk($this->name);
     }
     
