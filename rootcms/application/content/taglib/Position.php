@@ -70,21 +70,21 @@ class Position {
                 $where[$v[0]] = [[$v[1],$v[2]],'or'];
             }
         }
-        $data = $db->where($where)->order($order)->limit($num)->select();
-        foreach ($data as $k => $v) {
-            unset($data[$k]['data']);
-            $data[$k] = array_merge($data[$k],unserialize($v['data']));
+        $tdata = $db->where($where)->order($order)->limit($num)->select();
+        foreach ($tdata as $k => $v) {
+            unset($tdata[$k]['data']);
+            $tdata[$k] = array_merge($tdata[$k],unserialize($v['data']));
             $tb = \app\content\model\Content::getInstance($v['modelid']);
-            $tmp = $tb::get($v['id']);
+            $tmp = $tb->find($v['id'])->toArray();
             if(!empty($tmp) && isset($tmp['url'])){
-                $data[$k]['url'] = $tmp['url'];
+                $tdata[$k]['url'] = $tmp['url'];
             }
         }
         //结果进行缓存
         if ($cache) {
-            cache($cacheID, $data, $cache);
+            cache($cacheID, $tdata, $cache);
         }
-        return $data;
+        return $tdata;
     }
 
 }
